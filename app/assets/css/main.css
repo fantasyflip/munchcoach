@@ -70,3 +70,34 @@
 @theme {
   --animate-indeterminateafter: indeterminate-second 1.5s ease-in infinite;
 }
+
+/* Global layout & typography */
+
+html {
+  @apply bg-slate-50 text-slate-900;
+  color-scheme: light;
+}
+
+html.dark {
+  @apply bg-slate-950 text-slate-50;
+  color-scheme: dark;
+}
+
+html,
+body,
+#__nuxt {
+  height: 100%;
+}
+
+body {
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Text",
+    "Segoe UI",
+    sans-serif;
+  background-color: transparent;
+  color: inherit;
+  @apply antialiased;
+}

@@ -1,3 +1,134 @@
 {
-  "helloworld": "Hello World!"
+  "meta": {
+    "description": "MunchCoach is your AI-powered smart grocery list and recipe assistant."
+  },
+  "seo": {
+    "pages": {
+      "home": {
+        "title": "Smart grocery list & AI recipes",
+        "description": "MunchCoach is a smart grocery list and AI recipe assistant that turns your ingredients into personalized recipe ideas, helps reduce food waste, and keeps your pantry organised."
+      },
+      "list": {
+        "title": "Your grocery list",
+        "description": "Manage your grocery list and pantry in MunchCoach. Add ingredients, track what you have, and get recipe suggestions based on your ingredients."
+      },
+      "login": {
+        "title": "Login",
+        "description": "Sign in to MunchCoach with Discord to sync your grocery list and pantry across devices."
+      }
+    }
+  },
+  "app": {
+    "brand": {
+      "name": "MunchCoach",
+      "tagline": "Smart AI Grocery Companion"
+    },
+    "nav": {
+      "groceryList": "Grocery List",
+      "login": "Login",
+      "features": "Features",
+      "howItWorks": "How it works"
+    },
+    "footer": {
+      "crafted": "Crafted for smart cooking."
+    },
+    "darkMode": {
+      "ariaToggle": "Toggle dark mode"
+    },
+    "language": {
+      "en": "English",
+      "de": "German",
+      "ariaToggle": "Switch language to {language}"
+    }
+  },
+  "landing": {
+    "badge": "AI-powered recipes based on your ingredients",
+    "hero": {
+      "titlePart1": "Turn leftovers into recipes with an",
+      "titleHighlight": "AI-smart grocery list",
+      "description": "MunchCoach keeps track of what you already have, suggests recipes with AI, and highlights what's missing so you never forget an ingredient again."
+    },
+    "heroButtons": {
+      "primary": "Start your smart list",
+      "secondary": "Login with Discord"
+    },
+    "heroBullets": {
+      "smartAwarenessTitle": "Smart ingredient awareness",
+      "smartAwarenessBody": "Track what's in your pantry in one place.",
+      "chatDiscoveryTitle": "Chat-like recipe discovery",
+      "chatDiscoveryBody": "Ask for recipe ideas and get answers in a familiar chat interface."
+    },
+    "heroChat": {
+      "title": "AI Recipe Chat",
+      "subtitle": "Powered by MunchCoach AI",
+      "userMessage": "I have pasta, tomatoes and garlic. Any ideas?",
+      "aiIntro": "How about a simple garlic tomato pasta?",
+      "aiPoint1": "Uses your pasta, tomatoes & garlic",
+      "aiPoint2": "Suggests basil & parmesan as optional extras",
+      "chipAddMissing": "Add missing ingredients to list",
+      "chipViewRecipe": "View step-by-step recipe",
+      "inputPlaceholder": "Ask MunchCoach for a recipe based on your ingredients…"
+    },
+    "features": {
+      "title": "Cook smarter with what you already have",
+      "subtitle": "MunchCoach helps you save time, reduce food waste, and make better use of the ingredients in your kitchen.",
+      "cards": {
+        "saveTimeTitle": "Save time planning meals",
+        "saveTimeBody": "Get personalized recipe suggestions based on the ingredients you already have at home.",
+        "reduceWasteTitle": "Reduce food waste",
+        "reduceWasteBody": "Use up ingredients before they expire with recipe ideas tailored to your pantry.",
+        "stayOrganizedTitle": "Stay organised while shopping",
+        "stayOrganizedBody": "Keep a clean, always-available list that groups ingredients by category.",
+        "neverForgetTitle": "Never forget key ingredients",
+        "neverForgetBody": "See what's missing for a recipe and add it to your grocery list in one tap.",
+        "discoverNewTitle": "Discover new favourites",
+        "discoverNewBody": "Explore new recipes based on your preferences and what you have on hand.",
+        "extraBenefitsTitle": "Cook with more confidence",
+        "extraBenefitsBody": "Know exactly what you can cook tonight without another supermarket run."
+      }
+    },
+    "cta": {
+      "title": "Ready for a smarter grocery run?",
+      "body": "Start your shared list, ask MunchCoach for recipe ideas, and turn everyday ingredients into better meals.",
+      "primary": "Open grocery list",
+      "secondary": "Login to sync your list"
+    }
+  },
+  "login": {
+    "title": "Login",
+    "subtitle": "Sign in to sync your pantry and grocery list across devices.",
+    "sectionTitle": "Continue with Discord",
+    "sectionSubtitle": "Use your Discord account to securely access MunchCoach.",
+    "button": "Login with Discord"
+  },
+  "list": {
+    "title": "Grocery list",
+    "subtitle": "Keep track of what you already have and what you still need – with AI-powered recipe suggestions on top.",
+    "statusChip": "Connected to your AI recipe assistant",
+    "addSectionTitle": "Add ingredients",
+    "addPlaceholder": "e.g. Pasta, cherry tomatoes, garlic",
+    "addButton": "Add to list",
+    "listSectionTitle": "Your pantry & list",
+    "clearChecked": "Clear checked items",
+    "emptyState": "No ingredients yet. Start by adding what you already have at home.",
+    "remove": "Remove",
+    "fabLabel": "Open recipe chat",
+    "sampleItems": {
+      "spaghetti": "Spaghetti",
+      "cherryTomatoes": "Cherry tomatoes",
+      "garlicCloves": "Garlic cloves"
+    },
+    "chat": {
+      "title": "Recipe assistant",
+      "subtitle": "Ask for recipes based on what you already have at home.",
+      "userExample": "I have pasta, tomatoes and garlic.",
+      "aiExampleIntro": "Here's a quick garlic tomato pasta you could make:",
+      "aiExampleStep1": "Cook pasta until al dente.",
+      "aiExampleStep2": "Sauté garlic in olive oil, add tomatoes and simmer.",
+      "aiExampleStep3": "Toss pasta with the sauce and season to taste.",
+      "chipAddMissing": "Add missing ingredients to list",
+      "chipMoreIdeas": "Show more recipe ideas",
+      "inputHint": "Type a message to ask MunchCoach for recipe ideas."
+    }
+  }
 }
