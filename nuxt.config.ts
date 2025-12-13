@@ -8,6 +8,7 @@ export default defineNuxtConfig({
     "@nuxtjs/color-mode",
     "@vueuse/nuxt",
     "@nuxt/eslint",
+    "@nuxtwind/components",
   ],
   colorMode: {
     preference: "system", // default value of $colorMode.preference

@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@nuxtwind/components':
+    specifier: ^2.1.1
+    version: 2.1.1(vite@7.2.6)
   '@tailwindcss/vite':
     specifier: ^4.1.17
     version: 4.1.17(vite@7.2.6)
@@ -1648,7 +1651,6 @@ packages:
       semver: 7.7.3
     transitivePeerDependencies:
       - magicast
-    dev: true
 
   /@nuxtjs/i18n@10.2.1(eslint@9.39.1)(rollup@4.53.3)(vue@3.5.25):
     resolution: {integrity: sha512-/CHAIpYbFgobxeMsnKcD8xBUHxBpqipRMjaI3ol9MVZKscJM+IetYdNL9lGNFdEtlxzkV8COxnoa60rE4sPjuQ==}
@@ -1710,6 +1712,18 @@ packages:
       - uploadthing
       - vue
     dev: true
+
+  /@nuxtwind/components@2.1.1(vite@7.2.6):
+    resolution: {integrity: sha512-ht+Zf4DAU63Bsw7JKB8Bpm1ZiLvE5o8UmJqDLzwuSpsvxrWMP/4XPrsm70gvdn8kZlwLxeBX7jIjx893p0cezA==}
+    dependencies:
+      '@nuxt/kit': 4.2.1(magicast@0.5.1)
+      '@nuxtjs/color-mode': 3.5.2
+      '@tailwindcss/vite': 4.1.17(vite@7.2.6)
+      tailwindcss: 4.1.17
+    transitivePeerDependencies:
+      - magicast
+      - vite
+    dev: false
 
   /@oxc-minify/binding-android-arm64@0.96.0:
     resolution: {integrity: sha512-lzeIEMu/v6Y+La5JSesq4hvyKtKBq84cgQpKYTYM/yGuNk2tfd5Ha31hnC+mTh48lp/5vZH+WBfjVUjjINCfug==}
