@@ -1,0 +1,52 @@
+{
+  "apiVersion": "apps/v1",
+  "kind": "Deployment",
+  "metadata": {
+    "name": "munchcoach-app",
+    "namespace": "munchcoach"
+  },
+  "spec": {
+    "replicas": 1,
+    "selector": {
+      "matchLabels": {
+        "app": "munchcoach-app"
+      }
+    },
+    "template": {
+      "metadata": {
+        "labels": {
+          "app": "munchcoach-app"
+        }
+      },
+      "spec": {
+        "imagePullSecrets": [
+          {
+            "name": "ghcr-secret"
+          }
+        ],
+        "containers": [
+          {
+            "name": "munchcoach-app",
+            "image": "ghcr.io/user/repo:branch-hash",
+            "env": [],
+            "ports": [
+              {
+                "containerPort": 3000
+              }
+            ],
+            "resources": {
+              "requests": {
+                "cpu": "500m",
+                "memory": "750Mi"
+              },
+              "limits": {
+                "cpu": "1000m",
+                "memory": "1000Mi"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}
