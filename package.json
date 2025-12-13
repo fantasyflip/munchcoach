@@ -1,5 +1,5 @@
 {
-  "name": "nuxt-app",
+  "name": "munchcoach-webapp",
   "private": true,
   "scripts": {
     "build": "nuxt build",

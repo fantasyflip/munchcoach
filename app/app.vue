@@ -26,7 +26,7 @@ const linkItems = computed(() => {
   return [...staticItems, ...(head.value.link ?? [])];
 });
 useHead({
-  titleTemplate: "%s | App-Name",
+  titleTemplate: "%s | MunchCoach",
   meta: metaItems.value,
   link: linkItems.value,
   htmlAttrs: {
