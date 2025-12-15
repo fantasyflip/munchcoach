@@ -59,9 +59,9 @@
     <!-- App brand mark (matches header badge styling) -->
     <div class="absolute right-[200px] top-40 flex flex-col items-center">
       <div
-        class="h-[140px] w-[140px] rounded-3xl bg-cyan-500/90 text-slate-950 flex items-center justify-center font-black text-[64px] shadow-lg shadow-cyan-500/40"
+        class="h-[140px] relative w-[140px] rounded-3xl bg-cyan-500/90 text-slate-950 flex items-center justify-center shadow-lg shadow-cyan-500/40"
       >
-        AI
+        <AppLogoIcon class="absolute size-[88px] top-6" />
       </div>
     </div>
 

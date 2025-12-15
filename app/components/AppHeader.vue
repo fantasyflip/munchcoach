@@ -7,9 +7,9 @@
     >
       <NuxtLink :to="localePath('/')" class="flex items-center gap-3 group">
         <div
-          class="h-9 w-9 rounded-2xl bg-primary-500/90 text-slate-950 flex items-center justify-center font-black text-lg shadow-lg shadow-primary-500/40 group-hover:scale-105 transition-transform"
+          class="h-9 w-9 rounded-2xl bg-primary-500/90 text-slate-950 flex items-center justify-center shadow-lg shadow-primary-500/40 group-hover:scale-105 transition-transform"
         >
-          AI
+          <AppLogoIcon class="h-6 w-6" />
         </div>
         <div class="flex flex-col leading-tight">
           <span class="font-semibold tracking-tight text-sm sm:text-base">{{
