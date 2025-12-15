@@ -14,9 +14,9 @@
         </p>
       </div>
       <div
-        class="text-[11px] sm:text-xs px-3 py-1.5 rounded-full border border-emerald-500/40 bg-emerald-500/10 text-emerald-900 dark:text-emerald-200 flex items-center gap-1.5"
+        class="text-[11px] sm:text-xs px-3 py-1.5 rounded-full border border-secondary-500/40 bg-secondary-500/10 text-secondary-900 dark:text-secondary-200 flex items-center gap-1.5"
       >
-        <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+        <span class="h-1.5 w-1.5 rounded-full bg-secondary-400 animate-pulse" />
         {{ $t("list.statusChip") }}
       </div>
     </header>
@@ -181,7 +181,7 @@
 
             <div class="flex gap-2">
               <div
-                class="shrink-0 h-7 w-7 rounded-full bg-emerald-500/20 text-emerald-200 flex items-center justify-center text-[11px] font-semibold"
+                class="shrink-0 h-7 w-7 rounded-full bg-secondary-500/20 text-secondary-200 flex items-center justify-center text-[11px] font-semibold"
               >
                 AI
               </div>

@@ -11,7 +11,9 @@
         <p
           class="inline-flex items-center gap-2 rounded-full border border-primary-500/40 bg-primary-500/10 px-3 py-1 text-[11px] font-medium tracking-wide text-primary-700 dark:text-primary-200"
         >
-          <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+          <span
+            class="h-1.5 w-1.5 rounded-full bg-secondary-400 animate-pulse"
+          />
           {{ $t("landing.badge") }}
         </p>
 
@@ -100,7 +102,7 @@
             class="flex items-center justify-between text-xs text-slate-500 dark:text-slate-300"
           >
             <div class="flex items-center gap-2">
-              <span class="h-2 w-2 rounded-full bg-emerald-400" />
+              <span class="h-2 w-2 rounded-full bg-secondary-400" />
               <span class="font-medium">{{
                 $t("landing.heroChat.title")
               }}</span>
@@ -126,7 +128,7 @@
 
             <div class="flex gap-2">
               <div
-                class="shrink-0 h-7 w-7 rounded-full bg-emerald-500/20 text-emerald-200 flex items-center justify-center text-[11px] font-semibold"
+                class="shrink-0 h-7 w-7 rounded-full bg-secondary-500/20 text-secondary-200 flex items-center justify-center text-[11px] font-semibold"
               >
                 AI
               </div>
@@ -267,7 +269,7 @@
     <!-- Call to action -->
     <section
       id="how-it-works"
-      class="rounded-3xl border border-slate-200 bg-linear-to-r from-primary-500/10 via-emerald-500/5 to-cyan-500/10 px-4 sm:px-6 py-8 sm:py-10 flex flex-col md:flex-row items-center gap-6 md:gap-10 dark:border-primary-500/40 dark:from-primary-500/15 dark:via-emerald-500/10 dark:to-cyan-500/15"
+      class="rounded-3xl border border-slate-200 bg-linear-to-r from-primary-500/10 via-secondary-500/5 to-primary-500/10 px-4 sm:px-6 py-8 sm:py-10 flex flex-col md:flex-row items-center gap-6 md:gap-10 dark:border-primary-500/40 dark:from-primary-500/15 dark:via-secondary-500/10 dark:to-primary-500/15"
     >
       <div class="flex-1 space-y-2">
         <h2
