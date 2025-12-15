@@ -73,21 +73,31 @@
         <li
           v-for="item in items"
           :key="item.id"
-          class="flex items-center gap-3 rounded-xl px-3 py-2 bg-slate-900/80 border border-slate-700/60 hover:border-primary-500/50 transition-colors"
+          class="flex items-center gap-3 rounded-xl px-3 py-2 bg-white/90 border border-slate-200 hover:border-primary-500/50 transition-colors dark:bg-slate-900/80 dark:border-slate-700/60"
         >
-          <label class="inline-flex items-center gap-2 flex-1 cursor-pointer">
-            <input
-              v-model="item.checked"
-              type="checkbox"
-              class="h-4 w-4 rounded border-slate-600 bg-slate-900 text-primary-500 focus:ring-primary-500"
-            />
-            <span
-              class="text-xs sm:text-sm text-slate-900 dark:text-slate-100"
-              :class="{ 'line-through text-slate-500': item.checked }"
-            >
-              {{ item.name }}
-            </span>
-          </label>
+          <NXW-Checkbox
+            v-model="item.checked"
+            class="flex-1"
+            :color="{
+              label: 'text-slate-900 dark:text-slate-100',
+              iconInactive: 'text-slate-500 dark:text-slate-400',
+              iconActive: 'text-primary-600 dark:text-primary-400',
+              hover:
+                'group-hover:text-primary-600 dark:group-hover:text-primary-300',
+            }"
+          >
+            <template #label>
+              <span
+                class="text-xs sm:text-sm"
+                :class="{
+                  'line-through text-slate-500 dark:text-slate-400':
+                    item.checked,
+                }"
+              >
+                {{ item.name }}
+              </span>
+            </template>
+          </NXW-Checkbox>
           <button
             type="button"
             class="text-[11px] text-slate-500 hover:text-red-500 dark:hover:text-red-300"
@@ -123,133 +133,7 @@
       </svg>
     </button>
 
-    <!-- Chat interface -->
-    <Transition name="fade">
-      <div
-        v-if="isChatOpen"
-        class="fixed inset-0 z-40 flex items-end justify-center sm:items-center bg-black/30 backdrop-blur-sm"
-        @click.self="isChatOpen = false"
-      >
-        <div
-          class="w-full sm:max-w-md md:max-w-lg mx-auto rounded-t-3xl sm:rounded-3xl border border-slate-700/80 bg-slate-950/95 shadow-2xl shadow-slate-950/80 flex flex-col max-h-[90vh]"
-        >
-          <header
-            class="px-4 sm:px-5 py-3 border-b border-slate-800 flex items-center justify-between gap-3"
-          >
-            <div>
-              <h2 class="text-sm font-semibold text-slate-50">
-                {{ $t("list.chat.title") }}
-              </h2>
-              <p class="text-[11px] text-slate-500">
-                {{ $t("list.chat.subtitle") }}
-              </p>
-            </div>
-            <button
-              type="button"
-              class="h-8 w-8 inline-flex items-center justify-center rounded-full bg-slate-900 hover:bg-slate-800 text-slate-300"
-              aria-label="Close chat"
-              @click="isChatOpen = false"
-            >
-              <svg
-                class="h-3.5 w-3.5"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.7"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="M18 6 6 18" />
-                <path d="M6 6l12 12" />
-              </svg>
-            </button>
-          </header>
-
-          <div
-            class="flex-1 overflow-y-auto px-4 sm:px-5 py-4 space-y-4 text-xs sm:text-sm"
-          >
-            <div class="flex gap-2">
-              <div
-                class="shrink-0 h-7 w-7 rounded-full bg-primary-500/20 text-primary-200 flex items-center justify-center text-[11px] font-semibold"
-              >
-                You
-              </div>
-              <div
-                class="flex-1 rounded-2xl bg-slate-900/90 px-3 py-2 border border-slate-700/80"
-              >
-                {{ $t("list.chat.userExample") }}
-              </div>
-            </div>
-
-            <div class="flex gap-2">
-              <div
-                class="shrink-0 h-7 w-7 rounded-full bg-secondary-500/20 text-secondary-200 flex items-center justify-center text-[11px] font-semibold"
-              >
-                AI
-              </div>
-              <div class="flex-1 space-y-2">
-                <div
-                  class="rounded-2xl bg-slate-900/90 px-3 py-2 border border-slate-700/80"
-                >
-                  {{ $t("list.chat.aiExampleIntro") }}
-                  <ol
-                    class="mt-1 list-decimal list-inside text-[11px] sm:text-xs text-slate-300 space-y-0.5"
-                  >
-                    <li>{{ $t("list.chat.aiExampleStep1") }}</li>
-                    <li>{{ $t("list.chat.aiExampleStep2") }}</li>
-                    <li>{{ $t("list.chat.aiExampleStep3") }}</li>
-                  </ol>
-                </div>
-                <div class="flex flex-wrap gap-2">
-                  <button
-                    type="button"
-                    class="inline-flex items-center rounded-full bg-slate-900 px-2.5 py-1 text-[11px] text-slate-100 border border-slate-700/80"
-                  >
-                    + {{ $t("list.chat.chipAddMissing") }}
-                  </button>
-                  <button
-                    type="button"
-                    class="inline-flex items-center rounded-full bg-slate-900 px-2.5 py-1 text-[11px] text-slate-100 border border-slate-700/80"
-                  >
-                    {{ $t("list.chat.chipMoreIdeas") }}
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <form
-            class="border-t border-slate-800 px-3 sm:px-4 py-3 flex items-end gap-2 bg-slate-950/95"
-            @submit.prevent
-          >
-            <div
-              class="flex-1 rounded-2xl border border-slate-700/80 bg-slate-900/90 px-3 py-2 text-xs sm:text-sm text-slate-100"
-            >
-              <p class="text-slate-500 text-[11px]">
-                {{ $t("list.chat.inputHint") }}
-              </p>
-            </div>
-            <button
-              type="button"
-              class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-primary-600/70 text-slate-950 hover:bg-primary-500"
-              disabled
-            >
-              <svg
-                class="h-4 w-4"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.7"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="m5 12 7-7 7 7" />
-              </svg>
-            </button>
-          </form>
-        </div>
-      </div>
-    </Transition>
+    <ListChat v-model="isChatOpen" />
   </div>
 </template>
 
@@ -305,15 +189,3 @@ const removeItem = (id: number) => {
   items.value = items.value.filter((i) => i.id !== id);
 };
 </script>
-
-<style scoped>
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.18s ease-out;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
-</style>
