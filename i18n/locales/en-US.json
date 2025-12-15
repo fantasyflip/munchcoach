@@ -105,7 +105,7 @@
     "title": "Grocery list",
     "subtitle": "Keep track of what you already have and what you still need – with AI-powered recipe suggestions on top.",
     "statusChip": "Connected to your AI recipe assistant",
-    "addSectionTitle": "Add ingredients",
+    "addSectionTitle": "What do you have available?",
     "addPlaceholder": "e.g. Pasta, cherry tomatoes, garlic",
     "addButton": "Add to list",
     "listSectionTitle": "Your pantry & list",

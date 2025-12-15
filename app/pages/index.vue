@@ -40,28 +40,23 @@
             rounded
             shadow
             grow
-            @click="$router.push(localePath('/list'))"
+            :link="localePath('/list')"
           >
             {{ $t("landing.heroButtons.primary") }}
-            <svg
-              class="h-4 w-4"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.7"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path d="M5 12h14" />
-              <path d="M13 6l6 6-6 6" />
-            </svg>
           </NXW-Button>
 
           <NXW-Button
-            class="w-full sm:w-auto flex items-center justify-center gap-2 border border-slate-300 bg-white hover:bg-slate-100 text-slate-800 dark:border-slate-700 dark:bg-slate-900/60 dark:hover:bg-slate-800/80 dark:text-slate-100"
+            class="w-full sm:w-auto flex items-center justify-center gap-2"
+            :color="{
+              bg: 'bg-white dark:bg-slate-900/60',
+              text: 'text-slate-800 dark:text-slate-100',
+              border: 'border border-slate-300 dark:border-slate-700',
+              hover: 'hover:bg-slate-100 dark:hover:bg-slate-800/80',
+            }"
             rounded
             shadow
-            @click="$router.push(localePath('/auth/login'))"
+            :link="localePath('/auth/login')"
+            outlined
           >
             {{ $t("landing.heroButtons.secondary") }}
           </NXW-Button>
@@ -289,15 +284,21 @@
           rounded
           shadow
           grow
-          @click="$router.push(localePath('/list'))"
+          :link="localePath('/list')"
         >
           {{ $t("landing.cta.primary") }}
         </NXW-Button>
         <NXW-Button
-          class="w-full sm:w-auto flex items-center justify-center gap-2 border border-slate-800/30 bg-slate-950/40 hover:bg-slate-900/70 text-slate-100"
+          class="w-full sm:w-auto flex items-center justify-center gap-2"
+          :color="{
+            bg: 'bg-slate-950/40',
+            text: 'text-slate-100',
+            border: 'border border-slate-800/30',
+            hover: 'hover:bg-slate-900/70',
+          }"
           rounded
           shadow
-          @click="$router.push(localePath('/auth/login'))"
+          :link="localePath('/auth/login')"
         >
           {{ $t("landing.cta.secondary") }}
         </NXW-Button>

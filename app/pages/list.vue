@@ -25,14 +25,16 @@
     <section
       class="rounded-2xl border border-slate-200 bg-white/90 text-slate-900 dark:border-slate-700/70 dark:bg-slate-900/70 dark:text-slate-100 backdrop-blur-md p-4 sm:p-5 space-y-4"
     >
-      <h2 class="text-sm font-medium">{{ $t("list.addSectionTitle") }}</h2>
       <form class="flex flex-col sm:flex-row gap-3" @submit.prevent="handleAdd">
         <NXW-Textfield
           v-model="newItem"
           :label="$t('list.addSectionTitle')"
           :placeholder="$t('list.addPlaceholder')"
-          filled
+          outlined
           class="flex-1"
+          :color="{
+            bg: 'dark:bg-slate-900 bg-white',
+          }"
         />
         <NXW-Button
           type="submit"
