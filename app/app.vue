@@ -153,11 +153,11 @@ const switchLocalePath = useSwitchLocalePath();
 
 const nextLocale = computed(() => (locale.value === "de" ? "en" : "de"));
 const nextLocaleLabel = computed(() =>
-  nextLocale.value === "de" ? t("app.language.de") : t("app.language.en"),
+  nextLocale.value === "de" ? t("app.language.de") : t("app.language.en")
 );
 
 const localeToggleLabel = computed(() =>
-  t("app.language.ariaToggle", { language: nextLocaleLabel.value }),
+  t("app.language.ariaToggle", { language: nextLocaleLabel.value })
 );
 
 const toggleLocale = () => {
@@ -199,8 +199,22 @@ useHead({
     style: "scroll-behavior: smooth;",
   },
 });
-defineOgImageComponent("NuxtSeo", {
-  colorMode: "dark",
+
+const route = useRoute();
+
+const ogPageKey = computed(() => {
+  const normalizedPath = route.path.replace(/^\/(en|de)(?=\/|$)/, "");
+  if (normalizedPath.startsWith("/list")) return "list";
+  if (normalizedPath.startsWith("/auth/login")) return "login";
+  return "home";
+});
+
+watchEffect(() => {
+  defineOgImageComponent("OgImageBase", {
+    title: t(`seo.pages.${ogPageKey.value}.title`),
+    description: t(`seo.pages.${ogPageKey.value}.description`),
+    headline: t("app.brand.tagline"),
+  });
 });
 
 const colorMode = useColorMode();
