@@ -72,4 +72,8 @@ useHead(() => ({
     },
   ],
 }));
+
+definePageMeta({
+  middleware: "authed",
+});
 </script>
