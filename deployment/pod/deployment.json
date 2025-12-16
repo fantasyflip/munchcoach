@@ -27,7 +27,7 @@
         "containers": [
           {
             "name": "munchcoach-app",
-            "image": "ghcr.io/munchcoach/webapp:dev-ce49ed80fee7fb30881b9e32ccca0a61ff3a715a",
+            "image": "ghcr.io/munchcoach/webapp:main-c825dbda4d5bd1e626553b8e14769c4965922965",
             "env": [],
             "ports": [
               {
