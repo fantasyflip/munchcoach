@@ -112,7 +112,7 @@
     <!-- Floating chat button -->
     <button
       type="button"
-      class="group fixed bottom-6 right-6 sm:bottom-8 sm:right-8 h-14 w-14 hover:w-64 px-0 hover:px-4 gap-0 hover:gap-2 rounded-full bg-primary-600 hover:bg-primary-500 text-slate-950 shadow-xl shadow-primary-600/40 flex items-center justify-center overflow-hidden transition-[width,padding,gap] duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+      class="group cursor-pointer fixed bottom-6 right-6 sm:bottom-8 sm:right-8 h-14 w-14 hover:w-64 px-0 hover:px-4 gap-0 hover:gap-2 rounded-full bg-primary-600 hover:bg-primary-500 text-slate-950 shadow-xl shadow-primary-600/40 flex items-center justify-center overflow-hidden transition-[width,padding,gap] duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
       :aria-label="$t('list.fabLabel')"
       @click="isChatOpen = true"
     >
