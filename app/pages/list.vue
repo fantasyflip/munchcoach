@@ -112,25 +112,21 @@
     <!-- Floating chat button -->
     <button
       type="button"
-      class="fixed bottom-6 right-6 sm:bottom-8 sm:right-8 h-14 w-14 rounded-full bg-primary-600 hover:bg-primary-500 text-slate-950 shadow-xl shadow-primary-600/40 flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+      class="group fixed bottom-6 right-6 sm:bottom-8 sm:right-8 h-14 w-14 hover:w-64 px-0 hover:px-4 gap-0 hover:gap-2 rounded-full bg-primary-600 hover:bg-primary-500 text-slate-950 shadow-xl shadow-primary-600/40 flex items-center justify-center overflow-hidden transition-[width,padding,gap] duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
       :aria-label="$t('list.fabLabel')"
       @click="isChatOpen = true"
     >
-      <svg
-        class="h-7 w-7"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="1.7"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+      <div
+        class="relative flex h-8 w-8 items-center justify-center leading-none"
       >
-        <path d="M7 11h6" />
-        <path d="M7 15h4" />
-        <path
-          d="M5 5h14a2 2 0 0 1 2 2v7.5a2 2 0 0 1-2 2h-5.6L9 21v-4.5H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z"
-        />
-      </svg>
+        <Icon name="material-symbols:chat-bubble-outline" size="32" />
+        <AppLogoIcon class="absolute size-4 top-1.5 left-2" />
+      </div>
+      <div
+        class="max-w-0 opacity-0 overflow-hidden whitespace-nowrap leading-none transition-[max-width,opacity] duration-200 group-hover:max-w-48 group-hover:opacity-100"
+      >
+        {{ $t("list.fabLabel") }}
+      </div>
     </button>
 
     <ListChat v-model="isChatOpen" />
