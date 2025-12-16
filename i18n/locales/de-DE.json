@@ -1,3 +1,134 @@
 {
-  "helloworld": "Hallo Welt!"
+  "meta": {
+    "description": "MunchCoach ist deine KI-gestützte Einkaufsliste und Rezept-Assistentin."
+  },
+  "seo": {
+    "pages": {
+      "home": {
+        "title": "Intelligente Einkaufsliste & KI-Rezepte",
+        "description": "MunchCoach ist eine intelligente Einkaufsliste und KI-Rezeptassistentin, die aus deinen Zutaten personalisierte Rezeptideen macht, Lebensmittelverschwendung reduziert und deinen Vorrat organisiert."
+      },
+      "list": {
+        "title": "Deine Einkaufsliste",
+        "description": "Verwalte deine Einkaufsliste und deinen Vorrat mit MunchCoach. Füge Zutaten hinzu, behalte den Überblick und erhalte Rezeptvorschläge basierend auf deinen Zutaten."
+      },
+      "login": {
+        "title": "Anmelden",
+        "description": "Melde dich bei MunchCoach mit Discord an, um deine Einkaufsliste und deinen Vorrat geräteübergreifend zu synchronisieren."
+      }
+    }
+  },
+  "app": {
+    "brand": {
+      "name": "MunchCoach",
+      "tagline": "Intelligente KI-Einkaufsliste"
+    },
+    "nav": {
+      "groceryList": "Einkaufsliste",
+      "login": "Anmelden",
+      "features": "Funktionen",
+      "howItWorks": "So funktioniert's"
+    },
+    "footer": {
+      "crafted": "Gemacht für entspanntes Kochen."
+    },
+    "darkMode": {
+      "ariaToggle": "Dunkelmodus umschalten"
+    },
+    "language": {
+      "en": "Englisch",
+      "de": "Deutsch",
+      "ariaToggle": "Sprache zu {language} wechseln"
+    }
+  },
+  "landing": {
+    "badge": "KI-Rezepte auf Basis deiner Zutaten",
+    "hero": {
+      "titlePart1": "Mach aus Resten leckere Gerichte mit einer",
+      "titleHighlight": "intelligenten KI-Einkaufsliste",
+      "description": "MunchCoach behält im Blick, was du zu Hause hast, schlägt passende Rezepte mit KI vor und zeigt dir, was noch fehlt, damit du keine Zutat mehr vergisst."
+    },
+    "heroButtons": {
+      "primary": "Intelligente Liste starten",
+      "secondary": "Mit Discord anmelden"
+    },
+    "heroBullets": {
+      "smartAwarenessTitle": "Schlaue Zutaten-Übersicht",
+      "smartAwarenessBody": "Behalte deinen Vorrat an einem zentralen Ort im Blick.",
+      "chatDiscoveryTitle": "Rezepte im Chat entdecken",
+      "chatDiscoveryBody": "Frag nach Rezeptideen und erhalte Antworten in einer vertrauten Chat-Ansicht."
+    },
+    "heroChat": {
+      "title": "KI-Rezept-Chat",
+      "subtitle": "Angetrieben von MunchCoach AI",
+      "userMessage": "Ich habe Pasta, Tomaten und Knoblauch. Irgendwelche Ideen?",
+      "aiIntro": "Wie wäre es mit einer einfachen Knoblauch-Tomaten-Pasta?",
+      "aiPoint1": "Verwendet deine Pasta, Tomaten und den Knoblauch",
+      "aiPoint2": "Schlägt Basilikum und Parmesan als optionale Ergänzung vor",
+      "chipAddMissing": "Fehlende Zutaten zur Liste hinzufügen",
+      "chipViewRecipe": "Rezept Schritt für Schritt anzeigen",
+      "inputPlaceholder": "Bitte MunchCoach um ein Rezept auf Basis deiner Zutaten…"
+    },
+    "features": {
+      "title": "Koche smarter mit dem, was du schon hast",
+      "subtitle": "MunchCoach hilft dir, Zeit zu sparen, Lebensmittelverschwendung zu reduzieren und deine vorhandenen Zutaten besser zu nutzen.",
+      "cards": {
+        "saveTimeTitle": "Spare Zeit bei der Planung",
+        "saveTimeBody": "Erhalte persönliche Rezeptvorschläge auf Basis der Zutaten, die du bereits zu Hause hast.",
+        "reduceWasteTitle": "Weniger Lebensmittel verschwenden",
+        "reduceWasteBody": "Verbrauche Zutaten rechtzeitig mit Rezeptideen, die zu deinem Vorrat passen.",
+        "stayOrganizedTitle": "Organisiert einkaufen",
+        "stayOrganizedBody": "Nutze eine übersichtliche, immer verfügbare Liste, die Zutaten nach Kategorien gruppiert.",
+        "neverForgetTitle": "Keine Zutat mehr vergessen",
+        "neverForgetBody": "Sieh sofort, was dir für ein Rezept noch fehlt, und füge es mit einem Tippen zur Einkaufsliste hinzu.",
+        "discoverNewTitle": "Neue Lieblingsrezepte entdecken",
+        "discoverNewBody": "Finde neue Gerichte, die zu deinen Vorlieben und deinen Vorräten passen.",
+        "extraBenefitsTitle": "Mit mehr Sicherheit kochen",
+        "extraBenefitsBody": "Wisse jederzeit, was du heute kochen kannst, ohne noch einmal einkaufen zu müssen."
+      }
+    },
+    "cta": {
+      "title": "Bereit für einen smarteren Einkauf?",
+      "body": "Starte deine gemeinsame Liste, frage MunchCoach nach Rezeptideen und mach aus alltäglichen Zutaten bessere Mahlzeiten.",
+      "primary": "Einkaufsliste öffnen",
+      "secondary": "Zum Synchronisieren anmelden"
+    }
+  },
+  "login": {
+    "title": "Anmelden",
+    "subtitle": "Melde dich an, um deinen Vorrat und deine Einkaufsliste auf allen Geräten zu synchronisieren.",
+    "sectionTitle": "Mit Discord fortfahren",
+    "sectionSubtitle": "Nutze deinen Discord-Account, um sicher auf MunchCoach zuzugreifen.",
+    "button": "Mit Discord anmelden"
+  },
+  "list": {
+    "title": "Einkaufsliste",
+    "subtitle": "Behalte im Blick, was du schon hast und was du noch brauchst – mit KI-gestützten Rezeptvorschlägen obendrauf.",
+    "statusChip": "Verbunden mit deinem KI-Rezeptassistenten",
+    "addSectionTitle": "Was hast du zur Verfügung?",
+    "addPlaceholder": "z. B. Pasta, Cherrytomaten, Knoblauch",
+    "addButton": "Zur Liste hinzufügen",
+    "listSectionTitle": "Dein Vorrat & deine Liste",
+    "clearChecked": "Abgehakte Einträge entfernen",
+    "emptyState": "Noch keine Zutaten. Starte, indem du einträgst, was du bereits zu Hause hast.",
+    "remove": "Entfernen",
+    "fabLabel": "Mit MunchCoach chatten",
+    "sampleItems": {
+      "spaghetti": "Spaghetti",
+      "cherryTomatoes": "Cherrytomaten",
+      "garlicCloves": "Knoblauchzehen"
+    },
+    "chat": {
+      "title": "Rezeptassistent",
+      "subtitle": "Frag nach Rezepten auf Basis der Zutaten, die du bereits zu Hause hast.",
+      "userExample": "Ich habe Pasta, Tomaten und Knoblauch.",
+      "aiExampleIntro": "Hier ist eine schnelle Knoblauch-Tomaten-Pasta, die du kochen kannst:",
+      "aiExampleStep1": "Koche die Pasta al dente.",
+      "aiExampleStep2": "Brate den Knoblauch in Olivenöl an, gib Tomaten hinzu und lasse alles köcheln.",
+      "aiExampleStep3": "Mische die Pasta mit der Soße und schmecke sie ab.",
+      "chipAddMissing": "Fehlende Zutaten zur Liste hinzufügen",
+      "chipMoreIdeas": "Mehr Rezeptideen anzeigen",
+      "inputHint": "Gib eine Nachricht ein, um MunchCoach nach Rezeptideen zu fragen."
+    }
+  }
 }
