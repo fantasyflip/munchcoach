@@ -10,6 +10,12 @@ export default defineNuxtConfig({
     "@nuxt/eslint",
     "@nuxtwind/components",
     "@nuxt/icon",
+    [
+      "@nuxtjs/supabase",
+      {
+        redirect: false,
+      },
+    ],
   ],
   colorMode: {
     preference: "system", // default value of $colorMode.preference

@@ -130,5 +130,9 @@
       "chipMoreIdeas": "Show more recipe ideas",
       "inputHint": "Type a message to ask MunchCoach for recipe ideas."
     }
+  },
+  "callback": {
+    "title": "Logging in...",
+    "description": "Ask MunchCoach for his favorite recipe..."
   }
 }

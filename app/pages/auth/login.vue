@@ -31,6 +31,7 @@
         <button
           type="button"
           class="group cursor-pointer inline-flex w-full items-center justify-center gap-3 rounded-xl bg-[#5865F2] hover:bg-[#4752C4] px-4 py-3.5 text-sm font-medium text-white shadow-lg shadow-[#5865F2]/40 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#5865F2] focus-visible:ring-offset-slate-950"
+          @click="signIn('discord')"
         >
           <span
             class="flex h-6 w-6 items-center justify-center rounded-full bg-white/10"
@@ -47,6 +48,19 @@
 
 <script lang="ts" setup>
 const { t } = useI18n();
+
+const supabase = useSupabaseClient();
+const { baseUrl } = useRuntimeConfig().public.i18n;
+
+async function signIn(provider: string) {
+  const { error } = await supabase.auth.signInWithOAuth({
+    provider: provider as any,
+    options: {
+      redirectTo: baseUrl + "/auth/callback",
+    },
+  });
+  if (error) console.log(error);
+}
 
 useHead(() => ({
   title: t("seo.pages.login.title"),

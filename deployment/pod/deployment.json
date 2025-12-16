@@ -28,7 +28,35 @@
           {
             "name": "munchcoach-app",
             "image": "ghcr.io/munchcoach/webapp:dev-ce49ed80fee7fb30881b9e32ccca0a61ff3a715a",
-            "env": [],
+            "env": [
+              {
+                "name": "NUXT_PUBLIC_I18N_BASE_URL",
+                "valueFrom": {
+                  "secretKeyRef": {
+                    "key": "NUXT_PUBLIC_I18N_BASE_URL",
+                    "name": "munchcoach-env-secrets"
+                  }
+                }
+              },
+              {
+                "name": "SUPABASE_URL",
+                "valueFrom": {
+                  "secretKeyRef": {
+                    "key": "SUPABASE_URL",
+                    "name": "munchcoach-env-secrets"
+                  }
+                }
+              },
+              {
+                "name": "SUPABASE_KEY",
+                "valueFrom": {
+                  "secretKeyRef": {
+                    "key": "SUPABASE_KEY",
+                    "name": "munchcoach-env-secrets"
+                  }
+                }
+              }
+            ],
             "ports": [
               {
                 "containerPort": 3000
