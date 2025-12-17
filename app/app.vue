@@ -1,4 +1,8 @@
 <template>
+  <DevOnly>
+    <DebugSupabaseDisplay />
+    <DebugBreakpointDisplay />
+  </DevOnly>
   <div
     class="min-h-screen flex flex-col bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-50"
   >

@@ -19,6 +19,7 @@
     "@nuxt/icon": "2.1.1",
     "@nuxtjs/color-mode": "^3.5.2",
     "@nuxtjs/i18n": "^10.0.0",
+    "@nuxtjs/supabase": "2.0.3",
     "dotenv": "^17.2.0",
     "eslint": "^9.39.1",
     "eslint-config-prettier": "^10.1.8",
@@ -44,6 +45,7 @@
     "serviceName": "munchcoach-service",
     "appName": "munchcoach-app",
     "infraRepo": "fantasyflip/k8s-infra",
-    "ghEmail": "katzenberger.ph+github@gmail.com"
+    "ghEmail": "katzenberger.ph+github@gmail.com",
+    "secretName": "munchcoach-env-secrets"
   }
 }

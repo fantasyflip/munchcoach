@@ -26,6 +26,8 @@
     "nav": {
       "groceryList": "Einkaufsliste",
       "login": "Anmelden",
+      "logout": "Abmelden",
+      "logoutTitle": "Angemeldet als {name}. Klicken zum Abmelden.",
       "features": "Funktionen",
       "howItWorks": "So funktioniert's"
     },
@@ -130,5 +132,9 @@
       "chipMoreIdeas": "Mehr Rezeptideen anzeigen",
       "inputHint": "Gib eine Nachricht ein, um MunchCoach nach Rezeptideen zu fragen."
     }
+  },
+  "callback": {
+    "title": "Anmeldung läuft...",
+    "description": "MunchCoach nach seinem Lieblings-Rezept fragen..."
   }
 }
