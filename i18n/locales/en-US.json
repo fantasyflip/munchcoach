@@ -26,6 +26,8 @@
     "nav": {
       "groceryList": "Grocery List",
       "login": "Login",
+      "logout": "Logout",
+      "logoutTitle": "Logged in as {name}. Click to log out.",
       "features": "Features",
       "howItWorks": "How it works"
     },

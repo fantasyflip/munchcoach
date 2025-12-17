@@ -29,3 +29,9 @@ The app has i18n support for english and german already, but there is currently 
 
 #6
 The pages are missing meta descriptions for SEO purposes and the tab title. Please add localized meta descriptions and tab titles for all pages. Make sure the descriptions are relevant to the content of each page and include important keywords. The tab title should also reflect the content of the page and include the application name "MunchCoach". Use appropriate translations for both english and german versions.
+
+#7
+Improve the callback page to only work on valid callback calls from supabase. Any other call of this page should redirect. If the user is already logged in, redirect to list, if no user is logged in, redirect to login. Handle the logic via a middleware.
+
+#8
+Display the users name and profile picture in the navbar when he is logged in. The profile picture should be a small circular image next to the username. If no profile picture is available, display a default avatar icon instead. Make sure the design is responsive and works well on mobile devices. You can leave out the name on very small screens if there is not enough space. For now the display of the name and profile picture serves no other purpose than showing that the user is logged in. When logged in the login button should be replaced by the profile picture and name.

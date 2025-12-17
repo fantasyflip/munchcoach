@@ -26,6 +26,8 @@
     "nav": {
       "groceryList": "Einkaufsliste",
       "login": "Anmelden",
+      "logout": "Abmelden",
+      "logoutTitle": "Angemeldet als {name}. Klicken zum Abmelden.",
       "features": "Funktionen",
       "howItWorks": "So funktioniert's"
     },
