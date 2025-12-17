@@ -17,6 +17,10 @@
 </template>
 
 <script setup lang="ts">
+definePageMeta({
+  middleware: "supabase-callback",
+});
+
 const user = useSupabaseUser();
 
 const localePath = useLocalePath();
@@ -28,6 +32,6 @@ watch(
       useRouter().push(localePath("/list"));
     }
   },
-  { immediate: true }
+  { immediate: true },
 );
 </script>
