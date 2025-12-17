@@ -123,14 +123,13 @@
     "chat": {
       "title": "Recipe assistant",
       "subtitle": "Ask for recipes based on what you already have at home.",
-      "userExample": "I have pasta, tomatoes and garlic.",
-      "aiExampleIntro": "Here's a quick garlic tomato pasta you could make:",
-      "aiExampleStep1": "Cook pasta until al dente.",
-      "aiExampleStep2": "Sauté garlic in olive oil, add tomatoes and simmer.",
-      "aiExampleStep3": "Toss pasta with the sauce and season to taste.",
-      "chipAddMissing": "Add missing ingredients to list",
-      "chipMoreIdeas": "Show more recipe ideas",
-      "inputHint": "Type a message to ask MunchCoach for recipe ideas."
+      "welcomeMessage": "Hello! I'm MunchCoach, your smart grocery list assistant. You can tell me what ingredients you have, and I'll suggest recipes for you. If you're missing any ingredients for a recipe, I can help you add them to your grocery list. Just type in your ingredients to get started!",
+      "inputPlaceholder": "Type your message...",
+      "sendButton": "Send message",
+      "you": "You",
+      "ai": "AI",
+      "error": "Sorry, something went wrong. Please try again.",
+      "sending": "Sending..."
     }
   },
   "callback": {

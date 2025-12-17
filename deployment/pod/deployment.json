@@ -55,6 +55,15 @@
                     "name": "munchcoach-env-secrets"
                   }
                 }
+              },
+              {
+                "name": "GEMINI_API_KEY",
+                "valueFrom": {
+                  "secretKeyRef": {
+                    "key": "GEMINI_API_KEY",
+                    "name": "munchcoach-env-secrets"
+                  }
+                }
               }
             ],
             "ports": [
