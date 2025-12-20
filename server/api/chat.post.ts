@@ -1,6 +1,7 @@
 import Cerebras from "@cerebras/cerebras_cloud_sdk";
 import type { Stream } from "@cerebras/cerebras_cloud_sdk/streaming";
 import type { ChatCompletion } from "@cerebras/cerebras_cloud_sdk/resources/chat/completions";
+import { serverSupabaseUser } from "#supabase/server";
 
 // Enable/disable debug logging
 const DEBUG = true;
@@ -18,6 +19,23 @@ interface ChatRequest {
 }
 
 export default defineEventHandler(async (event) => {
+  // Check if user is authenticated
+  const user = await serverSupabaseUser(event);
+
+  if (!user) {
+    if (DEBUG) {
+      console.error("[Chat API] Unauthorized: User not logged in");
+    }
+    throw createError({
+      statusCode: 401,
+      statusMessage: "Unauthorized: You must be logged in to use the chat feature",
+    });
+  }
+
+  if (DEBUG) {
+    console.log("[Chat API] Authenticated user:", user.email);
+  }
+
   const config = useRuntimeConfig();
   const apiKey = config.cerebrasApiKey;
 
