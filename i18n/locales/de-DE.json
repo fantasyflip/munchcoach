@@ -101,7 +101,15 @@
     "subtitle": "Melde dich an, um deinen Vorrat und deine Einkaufsliste auf allen Geräten zu synchronisieren.",
     "sectionTitle": "Mit Discord fortfahren",
     "sectionSubtitle": "Nutze deinen Discord-Account, um sicher auf MunchCoach zuzugreifen.",
-    "button": "Mit Discord anmelden"
+    "button": "Mit Discord anmelden",
+    "benefits": {
+      "title": "Warum anmelden?",
+      "items": {
+        "sync": "Speichere deine Einkaufsliste und greife von jedem Gerät darauf zu.",
+        "recipes": "Erhalte personalisierte Rezeptvorschläge basierend auf deinen verfügbaren Zutaten.",
+        "chat": "Chatte mit MunchCoach für KI-gestützte Kochunterstützung."
+      }
+    }
   },
   "list": {
     "title": "Einkaufsliste",
@@ -129,7 +137,12 @@
       "you": "Du",
       "ai": "KI",
       "error": "Entschuldigung, etwas ist schiefgelaufen. Bitte versuche es erneut.",
-      "sending": "Wird gesendet..."
+      "sending": "Wird gesendet...",
+      "loginRequired": {
+        "title": "Anmeldung erforderlich",
+        "description": "Melde dich an, um mit MunchCoach zu chatten und personalisierte Rezeptvorschläge zu erhalten.",
+        "button": "Anmelden und loschatten"
+      }
     }
   },
   "callback": {

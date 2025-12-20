@@ -44,67 +44,102 @@
           ref="messagesContainer"
           class="flex-1 overflow-y-auto px-4 sm:px-5 py-4 space-y-4 text-xs sm:text-sm text-slate-900 dark:text-slate-100"
         >
-          <!-- Messages -->
-          <div v-for="(msg, index) in messages" :key="index" class="flex gap-2">
-            <div
-              class="shrink-0 h-7 w-7 rounded-full flex items-center justify-center text-[11px] font-semibold"
-              :class="
-                msg.role === 'user'
-                  ? 'bg-primary-500/20 text-primary-700 dark:text-primary-200'
-                  : 'bg-secondary-500/20 text-secondary-800 dark:text-secondary-200'
-              "
-            >
-              {{
-                msg.role === "user" ? $t("list.chat.you") : $t("list.chat.ai")
-              }}
+          <!-- Messages (only show if logged in) -->
+          <template v-if="isLoggedIn">
+            <div v-for="(msg, index) in messages" :key="index" class="flex gap-2">
+              <div
+                class="shrink-0 h-7 w-7 rounded-full flex items-center justify-center text-[11px] font-semibold"
+                :class="
+                  msg.role === 'user'
+                    ? 'bg-primary-500/20 text-primary-700 dark:text-primary-200'
+                    : 'bg-secondary-500/20 text-secondary-800 dark:text-secondary-200'
+                "
+              >
+                {{
+                  msg.role === "user" ? $t("list.chat.you") : $t("list.chat.ai")
+                }}
+              </div>
+              <div
+                class="flex-1 rounded-2xl px-3 py-2 border"
+                :class="[
+                  msg.role === 'user'
+                    ? 'bg-slate-100 border-slate-200 dark:bg-slate-900/90 dark:border-slate-700/80 whitespace-pre-wrap'
+                    : 'bg-slate-50 border-slate-200 dark:bg-slate-900/90 dark:border-slate-700/80 prose prose-sm prose-slate dark:prose-invert max-w-none',
+                ]"
+              >
+                <template v-if="msg.role === 'user'">{{ msg.content }}</template>
+                <div v-else v-html="parseMarkdown(msg.content)" />
+              </div>
             </div>
-            <div
-              class="flex-1 rounded-2xl px-3 py-2 border"
-              :class="[
-                msg.role === 'user'
-                  ? 'bg-slate-100 border-slate-200 dark:bg-slate-900/90 dark:border-slate-700/80 whitespace-pre-wrap'
-                  : 'bg-slate-50 border-slate-200 dark:bg-slate-900/90 dark:border-slate-700/80 prose prose-sm prose-slate dark:prose-invert max-w-none',
-              ]"
-            >
-              <template v-if="msg.role === 'user'">{{ msg.content }}</template>
-              <div v-else v-html="parseMarkdown(msg.content)" />
-            </div>
-          </div>
 
-          <!-- Streaming message -->
-          <div v-if="streamingMessage" class="flex gap-2">
-            <div
-              class="shrink-0 h-7 w-7 rounded-full bg-secondary-500/20 text-secondary-800 dark:text-secondary-200 flex items-center justify-center text-[11px] font-semibold"
-            >
-              {{ $t("list.chat.ai") }}
+            <!-- Streaming message -->
+            <div v-if="streamingMessage" class="flex gap-2">
+              <div
+                class="shrink-0 h-7 w-7 rounded-full bg-secondary-500/20 text-secondary-800 dark:text-secondary-200 flex items-center justify-center text-[11px] font-semibold"
+              >
+                {{ $t("list.chat.ai") }}
+              </div>
+              <div
+                class="flex-1 rounded-2xl bg-slate-50 px-3 py-2 border border-slate-200 dark:bg-slate-900/90 dark:border-slate-700/80 prose prose-sm prose-slate dark:prose-invert max-w-none"
+              >
+                <div v-html="parseMarkdown(streamingMessage)" />
+                <span class="animate-pulse">▌</span>
+              </div>
             </div>
-            <div
-              class="flex-1 rounded-2xl bg-slate-50 px-3 py-2 border border-slate-200 dark:bg-slate-900/90 dark:border-slate-700/80 prose prose-sm prose-slate dark:prose-invert max-w-none"
-            >
-              <div v-html="parseMarkdown(streamingMessage)" />
-              <span class="animate-pulse">▌</span>
-            </div>
-          </div>
 
-          <!-- Error message -->
+            <!-- Error message -->
+            <div
+              v-if="errorMessage"
+              class="flex gap-2 text-red-600 dark:text-red-400"
+            >
+              <div
+                class="shrink-0 h-7 w-7 rounded-full bg-red-500/20 flex items-center justify-center text-[11px] font-semibold"
+              >
+                !
+              </div>
+              <div
+                class="flex-1 rounded-2xl bg-red-50 px-3 py-2 border border-red-200 dark:bg-red-900/20 dark:border-red-700/80"
+              >
+                {{ errorMessage }}
+              </div>
+            </div>
+          </template>
+
+          <!-- Login Required State -->
           <div
-            v-if="errorMessage"
-            class="flex gap-2 text-red-600 dark:text-red-400"
+            v-else
+            class="flex flex-col items-center justify-center py-8 px-4 text-center"
           >
             <div
-              class="shrink-0 h-7 w-7 rounded-full bg-red-500/20 flex items-center justify-center text-[11px] font-semibold"
+              class="h-16 w-16 rounded-full bg-primary-500/10 flex items-center justify-center mb-4"
             >
-              !
+              <Icon
+                name="lucide:lock"
+                class="h-8 w-8 text-primary-600 dark:text-primary-400"
+              />
             </div>
-            <div
-              class="flex-1 rounded-2xl bg-red-50 px-3 py-2 border border-red-200 dark:bg-red-900/20 dark:border-red-700/80"
+            <h3
+              class="text-base font-semibold text-slate-900 dark:text-slate-50 mb-2"
             >
-              {{ errorMessage }}
-            </div>
+              {{ $t("list.chat.loginRequired.title") }}
+            </h3>
+            <p class="text-sm text-slate-600 dark:text-slate-400 mb-6 max-w-xs">
+              {{ $t("list.chat.loginRequired.description") }}
+            </p>
+            <button
+              type="button"
+              class="inline-flex items-center gap-2 rounded-xl bg-primary-600 hover:bg-primary-500 px-5 py-2.5 text-sm font-medium text-white shadow-lg shadow-primary-600/30 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+              @click="handleLoginClick"
+            >
+              <Icon name="lucide:log-in" class="h-4 w-4" />
+              {{ $t("list.chat.loginRequired.button") }}
+            </button>
           </div>
         </div>
 
+        <!-- Chat input form (only if logged in) -->
         <form
+          v-if="isLoggedIn"
           class="border-t border-slate-200 px-3 sm:px-4 py-3 flex items-end gap-2 bg-white/95 dark:border-slate-800 dark:bg-slate-950/95"
           @submit.prevent="sendMessage"
         >
@@ -147,6 +182,35 @@
             </svg>
           </button>
         </form>
+
+        <!-- Disabled input state (not logged in) -->
+        <div
+          v-else
+          class="border-t border-slate-200 px-3 sm:px-4 py-3 flex items-end gap-2 bg-white/95 dark:border-slate-800 dark:bg-slate-950/95"
+        >
+          <div
+            class="flex-1 rounded-2xl border border-slate-200 bg-slate-100 px-3 py-2 text-xs sm:text-sm text-slate-400 dark:border-slate-700/80 dark:bg-slate-800/50 dark:text-slate-500 cursor-not-allowed"
+          >
+            {{ $t("list.chat.inputPlaceholder") }}
+          </div>
+          <button
+            type="button"
+            class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-slate-300 text-slate-500 dark:bg-slate-700 dark:text-slate-400 cursor-not-allowed"
+            disabled
+          >
+            <svg
+              class="h-4 w-4"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="m5 12 7-7 7 7" />
+            </svg>
+          </button>
+        </div>
       </div>
     </div>
   </Transition>
@@ -172,6 +236,12 @@ marked.setOptions({
 });
 
 const { t } = useI18n();
+const localePath = useLocalePath();
+const user = useSupabaseUser();
+
+const isLoggedIn = computed(
+  () => !!user.value && user.value.role === "authenticated",
+);
 
 const props = defineProps<{ modelValue: boolean }>();
 
@@ -181,6 +251,15 @@ const isOpen = computed({
   get: () => props.modelValue,
   set: (value) => emit("update:modelValue", value),
 });
+
+// Handle login button click - store redirect target in localStorage and navigate
+const handleLoginClick = () => {
+  if (import.meta.client) {
+    localStorage.setItem("munchcoach_redirect", "chat");
+  }
+  isOpen.value = false;
+  navigateTo(localePath("/auth/login"));
+};
 
 const messagesContainer = ref<HTMLElement | null>(null);
 const userInput = ref("");

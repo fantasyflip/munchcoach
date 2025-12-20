@@ -24,12 +24,25 @@ definePageMeta({
 const user = useSupabaseUser();
 
 const localePath = useLocalePath();
+const router = useRouter();
 
 watch(
   user,
   (newUser) => {
     if (newUser) {
-      useRouter().push(localePath("/list"));
+      // Check for redirect target in localStorage
+      let redirectTo = "/list";
+      let query: Record<string, string> = {};
+
+      if (import.meta.client) {
+        const storedRedirect = localStorage.getItem("munchcoach_redirect");
+        if (storedRedirect === "chat") {
+          query = { openChat: "true" };
+          localStorage.removeItem("munchcoach_redirect");
+        }
+      }
+
+      router.push({ path: localePath(redirectTo), query });
     }
   },
   { immediate: true },

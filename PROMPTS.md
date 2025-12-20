@@ -47,3 +47,7 @@ Rework the chat interface component to actually work. Therefore use the installe
 5. The server route should have a const variable to enable or disable debug logs on the server side. If debug logs are enabled, log the full request and response of the llm to the console. Otherwie just log errors. For now activate debug logs.
 6. Static text on the frontend should be localized using the i18n module.
 7. Markdown responses should be parsed and displayed as formatted html in the chat interface.
+
+#10
+Rework the chat component. It should only be accessible if the user is logged in. If the user is not logged in, redirect to login page. On the login page add a section where the benefits of logged in users are displayed.
+Such as "You can save your grocery list and access it from any device." or "You can get personalized recipe suggestions based on your available ingredients." or "You can get personalized recipe suggestions based on your available ingredients." or "Chat with MunchCoach to get personalized recipe suggestions based on your available ingredients.". The text must be localized using the i18n module. If the login is prompted from the chat interface, the login page should be opened with a redirect to the chat interface after login.
