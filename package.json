@@ -33,7 +33,7 @@
     "yaml": "^2.8.0"
   },
   "dependencies": {
-    "@google/genai": "^1.34.0",
+    "@cerebras/cerebras_cloud_sdk": "^1.59.0",
     "@nuxtwind/components": "^2.1.1",
     "@tailwindcss/typography": "^0.5.19",
     "@tailwindcss/vite": "^4.1.17",

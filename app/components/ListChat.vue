@@ -156,13 +156,13 @@
 import { marked } from "marked";
 
 interface ChatMessage {
-  role: "user" | "model";
+  role: "user" | "assistant";
   content: string;
 }
 
-interface GeminiContent {
-  role: "user" | "model";
-  parts: { text: string }[];
+interface ApiMessage {
+  role: "user" | "assistant";
+  content: string;
 }
 
 // Configure marked for safe rendering
@@ -188,20 +188,20 @@ const isLoading = ref(false);
 const streamingMessage = ref("");
 const errorMessage = ref("");
 
-// Initialize with welcome message
+// Initialize with welcome message (static, localized)
 const messages = ref<ChatMessage[]>([
   {
-    role: "model",
+    role: "assistant",
     content: t("list.chat.welcomeMessage"),
   },
 ]);
 
-// Convert messages to Gemini API format (excluding the static welcome message for API calls)
-const getHistoryForApi = (): GeminiContent[] => {
-  // Skip the first message (static welcome) and convert to Gemini format
+// Convert messages to API format (excluding the static welcome message)
+const getHistoryForApi = (): ApiMessage[] => {
+  // Skip the first message (static welcome) and convert to API format
   return messages.value.slice(1).map((msg) => ({
     role: msg.role,
-    parts: [{ text: msg.content }],
+    content: msg.content,
   }));
 };
 
@@ -244,7 +244,7 @@ const sendMessage = async () => {
       },
       body: JSON.stringify({
         message,
-        history: getHistoryForApi().slice(0, -1), // Exclude the message we just added
+        history: getHistoryForApi(),
       }),
     });
 
@@ -284,7 +284,7 @@ const sendMessage = async () => {
             if (data.done && streamingMessage.value) {
               // Add the completed message to history
               messages.value.push({
-                role: "model",
+                role: "assistant",
                 content: streamingMessage.value,
               });
               streamingMessage.value = "";
@@ -299,7 +299,7 @@ const sendMessage = async () => {
     // Handle any remaining streamed content
     if (streamingMessage.value) {
       messages.value.push({
-        role: "model",
+        role: "assistant",
         content: streamingMessage.value,
       });
       streamingMessage.value = "";
