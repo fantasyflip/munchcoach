@@ -53,6 +53,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
 
   runtimeConfig: {
+    cerebrasApiKey: process.env.CEREBRAS_API_KEY,
     public: {
       i18n: {
         baseUrl: process.env.NUXT_PUBLIC_I18N_BASE_URL || "https://example.com",

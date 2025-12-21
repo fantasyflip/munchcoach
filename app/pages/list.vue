@@ -164,6 +164,17 @@ const items = ref<GroceryItem[]>([
 const isChatOpen = ref(false);
 let nextId = items.value.length + 1;
 
+// Check for openChat query param to auto-open chat after login redirect
+const route = useRoute();
+onMounted(() => {
+  if (route.query.openChat === "true") {
+    isChatOpen.value = true;
+    // Clean up the query param from URL without triggering navigation
+    const router = useRouter();
+    router.replace({ query: {} });
+  }
+});
+
 const handleAdd = () => {
   const trimmed = newItem.value.trim();
   if (!trimmed) return;
