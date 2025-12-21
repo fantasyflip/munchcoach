@@ -9,7 +9,7 @@
     "ingressClassName": "nginx",
     "rules": [
       {
-        "host": "munchcoach.fantasyflip.de",
+        "host": "mc.fantasyflip.de",
         "http": {
           "paths": [
             {
@@ -17,7 +17,7 @@
               "pathType": "Prefix",
               "backend": {
                 "service": {
-                  "name": "munchcoach-service",
+                  "name": "munchcoach-v2-service",
                   "port": {
                     "number": 3000
                   }
