@@ -2,20 +2,20 @@
   "apiVersion": "apps/v1",
   "kind": "Deployment",
   "metadata": {
-    "name": "munchcoach-app",
+    "name": "munchcoach-app-v2",
     "namespace": "munchcoach"
   },
   "spec": {
     "replicas": 1,
     "selector": {
       "matchLabels": {
-        "app": "munchcoach-app"
+        "app": "munchcoach-app-v2"
       }
     },
     "template": {
       "metadata": {
         "labels": {
-          "app": "munchcoach-app"
+          "app": "munchcoach-app-v2"
         }
       },
       "spec": {
@@ -26,46 +26,9 @@
         ],
         "containers": [
           {
-            "name": "munchcoach-app",
-            "image": "ghcr.io/munchcoach/webapp:dev-ce49ed80fee7fb30881b9e32ccca0a61ff3a715a",
-            "env": [
-              {
-                "name": "NUXT_PUBLIC_I18N_BASE_URL",
-                "valueFrom": {
-                  "secretKeyRef": {
-                    "key": "NUXT_PUBLIC_I18N_BASE_URL",
-                    "name": "munchcoach-env-secrets"
-                  }
-                }
-              },
-              {
-                "name": "SUPABASE_URL",
-                "valueFrom": {
-                  "secretKeyRef": {
-                    "key": "SUPABASE_URL",
-                    "name": "munchcoach-env-secrets"
-                  }
-                }
-              },
-              {
-                "name": "SUPABASE_KEY",
-                "valueFrom": {
-                  "secretKeyRef": {
-                    "key": "SUPABASE_KEY",
-                    "name": "munchcoach-env-secrets"
-                  }
-                }
-              },
-              {
-                "name": "GEMINI_API_KEY",
-                "valueFrom": {
-                  "secretKeyRef": {
-                    "key": "GEMINI_API_KEY",
-                    "name": "munchcoach-env-secrets"
-                  }
-                }
-              }
-            ],
+            "name": "munchcoach-app-v2",
+            "image": "ghcr.io/user/repo:branch-hash",
+            "env": [],
             "ports": [
               {
                 "containerPort": 3000

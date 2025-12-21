@@ -101,7 +101,15 @@
     "subtitle": "Sign in to sync your pantry and grocery list across devices.",
     "sectionTitle": "Continue with Discord",
     "sectionSubtitle": "Use your Discord account to securely access MunchCoach.",
-    "button": "Login with Discord"
+    "button": "Login with Discord",
+    "benefits": {
+      "title": "Why sign in?",
+      "items": {
+        "sync": "Save your grocery list and access it from any device.",
+        "recipes": "Get personalized recipe suggestions based on your available ingredients.",
+        "chat": "Chat with MunchCoach for AI-powered cooking assistance."
+      }
+    }
   },
   "list": {
     "title": "Grocery list",
@@ -129,7 +137,12 @@
       "you": "You",
       "ai": "AI",
       "error": "Sorry, something went wrong. Please try again.",
-      "sending": "Sending..."
+      "sending": "Sending...",
+      "loginRequired": {
+        "title": "Login required",
+        "description": "Sign in to chat with MunchCoach and get personalized recipe suggestions.",
+        "button": "Login to start chatting"
+      }
     }
   },
   "callback": {

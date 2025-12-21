@@ -37,12 +37,17 @@ Improve the callback page to only work on valid callback calls from supabase. An
 Display the users name and profile picture in the navbar when he is logged in. The profile picture should be a small circular image next to the username. If no profile picture is available, display a default avatar icon instead. Make sure the design is responsive and works well on mobile devices. You can leave out the name on very small screens if there is not enough space. For now the display of the name and profile picture serves no other purpose than showing that the user is logged in. When logged in the login button should be replaced by the profile picture and name.
 
 #9
-Rework the chat interface component to actually work. Therefore use the installed gemini api sdk. The Api-Key is available as an environment variable GEMINI_API_KEY. The chat interface should have the following functionality:
+Rework the chat interface component to actually work. Therefore use the installed cerebras api sdk. The Api-Key is available as an environment variable CEREBRAS_API_KEY. The chat interface should have the following functionality:
 1. An initial system prompt that tells the llm that it is a smart grocery list assistant. The prompt should be:
 "You are MunchCoach, a smart grocery list assistant. Your task is to help users find recipes based on the ingredients they have available. You should suggest recipes, provide cooking instructions, and help users add missing ingredients to their grocery list. Always be friendly and helpful."
 2. The frontend should have a static first message from the assistant that welcomes the user and explains how to use the chat:
 "Hello! I'm MunchCoach, your smart grocery list assistant. You can tell me what ingredients you have, and I'll suggest recipes for you. If you're missing any ingredients for a recipe, I can help you add them to your grocery list. Just type in your ingredients to get started!"
 3. The user should be able to type messages in the chat input and send them to the llm.
-4. The messages should be sent to the gemini api using the sdk and the response from the llm should be displayed in the chat interface. The response should be streamed. Gemini sdk supports streaming: https://googleapis.github.io/js-genai/release_docs/index.html#streaming
-5. The server route should have a const variable to enable or disable debug logs on the server side. If debug logs are enabled, log the full request and response of the llm to the console. Otherwie just log errors.
+4. The messages should be sent to the gemini api using the sdk and the response from the llm should be displayed in the chat interface. The response should be streamed. Cerebras sdk supports streaming: https://inference-docs.cerebras.ai/capabilities/streaming
+5. The server route should have a const variable to enable or disable debug logs on the server side. If debug logs are enabled, log the full request and response of the llm to the console. Otherwie just log errors. For now activate debug logs.
 6. Static text on the frontend should be localized using the i18n module.
+7. Markdown responses should be parsed and displayed as formatted html in the chat interface.
+
+#10
+Rework the chat component. It should only be accessible if the user is logged in. If the user is not logged in, redirect to login page. On the login page add a section where the benefits of logged in users are displayed.
+Such as "You can save your grocery list and access it from any device." or "You can get personalized recipe suggestions based on your available ingredients." or "You can get personalized recipe suggestions based on your available ingredients." or "Chat with MunchCoach to get personalized recipe suggestions based on your available ingredients.". The text must be localized using the i18n module. If the login is prompted from the chat interface, the login page should be opened with a redirect to the chat interface after login.
