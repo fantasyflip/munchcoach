@@ -114,8 +114,31 @@
   "list": {
     "title": "Einkaufsliste",
     "subtitle": "Behalte im Blick, was du schon hast und was du noch brauchst – mit KI-gestützten Rezeptvorschlägen obendrauf.",
-    "statusChip": "Verbunden mit deinem KI-Rezeptassistenten",
-    "addSectionTitle": "Was hast du zur Verfügung?",
+    "statusChip": "Verbunden mit deinem KI-Rezeptassistenten",    "searchIngredients": "Zutaten suchen",
+    "tabs": {
+      "pantry": "Vorrat",
+      "shopping": "Einkaufsliste"
+    },
+    "pantry": {
+      "title": "Dein Vorrat",
+      "addItem": "Zutat hinzufügen",
+      "emptyState": "Dein Vorrat ist leer. Füge Zutaten hinzu, die du zu Hause hast.",
+      "addFirst": "Füge deine erste Zutat hinzu"
+    },
+    "shopping": {
+      "selectList": "Einkaufsliste:",
+      "newList": "Neue Liste erstellen",
+      "noList": "Keine Liste ausgewählt",
+      "noListSelected": "Keine Einkaufsliste ausgewählt. Erstelle eine, um loszulegen.",
+      "createFirst": "Erstelle deine erste Liste",
+      "emptyList": "Diese Liste ist leer. Füge Zutaten hinzu, um loszulegen.",
+      "addFirst": "Füge deinen ersten Artikel hinzu",
+      "newListTitle": "Neue Einkaufsliste erstellen",
+      "listNameLabel": "Listenname",
+      "listNamePlaceholder": "z. B. Wocheneinkauf",
+      "cancel": "Abbrechen",
+      "create": "Erstellen"
+    },    "addSectionTitle": "Was hast du zur Verfügung?",
     "addPlaceholder": "z. B. Pasta, Cherrytomaten, Knoblauch",
     "addButton": "Zur Liste hinzufügen",
     "listSectionTitle": "Dein Vorrat & deine Liste",
@@ -148,5 +171,15 @@
   "callback": {
     "title": "Anmeldung läuft...",
     "description": "MunchCoach nach seinem Lieblings-Rezept fragen..."
+  },
+  "spotlight": {
+    "placeholder": "Nach Zutaten suchen...",
+    "hint": "Tippe los, um nach Zutaten zu suchen",
+    "noResults": "Keine Zutaten gefunden. Versuche eine andere Suche.",
+    "inPantry": "Im Vorrat",
+    "inList": "In Liste",
+    "addingTo": "Hinzufügen zu:",
+    "navigate": "navigieren",
+    "select": "auswählen"
   }
 }

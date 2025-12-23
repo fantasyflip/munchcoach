@@ -115,6 +115,31 @@
     "title": "Grocery list",
     "subtitle": "Keep track of what you already have and what you still need – with AI-powered recipe suggestions on top.",
     "statusChip": "Connected to your AI recipe assistant",
+    "searchIngredients": "Search ingredients",
+    "tabs": {
+      "pantry": "Pantry",
+      "shopping": "Shopping List"
+    },
+    "pantry": {
+      "title": "Your Pantry",
+      "addItem": "Add ingredient",
+      "emptyState": "Your pantry is empty. Add ingredients you have at home.",
+      "addFirst": "Add your first ingredient"
+    },
+    "shopping": {
+      "selectList": "Shopping list:",
+      "newList": "Create new list",
+      "noList": "No list selected",
+      "noListSelected": "No shopping list selected. Create one to get started.",
+      "createFirst": "Create your first list",
+      "emptyList": "This list is empty. Add ingredients to get started.",
+      "addFirst": "Add your first item",
+      "newListTitle": "Create new shopping list",
+      "listNameLabel": "List name",
+      "listNamePlaceholder": "e.g. Weekly groceries",
+      "cancel": "Cancel",
+      "create": "Create"
+    },
     "addSectionTitle": "What do you have available?",
     "addPlaceholder": "e.g. Pasta, cherry tomatoes, garlic",
     "addButton": "Add to list",
@@ -148,5 +173,15 @@
   "callback": {
     "title": "Logging in...",
     "description": "Ask MunchCoach for his favorite recipe..."
+  },
+  "spotlight": {
+    "placeholder": "Search for ingredients...",
+    "hint": "Start typing to search for ingredients",
+    "noResults": "No ingredients found. Try a different search.",
+    "inPantry": "In pantry",
+    "inList": "In list",
+    "addingTo": "Adding to:",
+    "navigate": "navigate",
+    "select": "select"
   }
 }

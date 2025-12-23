@@ -16,6 +16,7 @@ export default defineNuxtConfig({
         redirect: false,
       },
     ],
+    "@pinia/nuxt",
   ],
   colorMode: {
     preference: "system", // default value of $colorMode.preference
