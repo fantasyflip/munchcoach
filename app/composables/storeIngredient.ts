@@ -129,6 +129,15 @@ export const useIngredientStore = defineStore("ingredients", () => {
     searchStatus.value = "idle";
   };
 
+  // Reset store to initial state
+  const $reset = () => {
+    categories.value = [];
+    categoriesStatus.value = "idle";
+    searchResults.value = [];
+    searchQuery.value = "";
+    searchStatus.value = "idle";
+  };
+
   return {
     // Categories
     categories,
@@ -146,5 +155,6 @@ export const useIngredientStore = defineStore("ingredients", () => {
     // Utilities
     getIngredientById,
     getIngredientsByCategory,
+    $reset,
   };
 });

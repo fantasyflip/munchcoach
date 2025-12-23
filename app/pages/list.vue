@@ -13,14 +13,14 @@
           {{ $t("list.subtitle") }}
         </p>
       </div>
-      <div class="flex items-center gap-3">
+      <div class="flex items-center gap-2">
         <!-- Spotlight search trigger -->
         <button
           type="button"
-          class="flex items-center gap-2 px-3 py-2 text-sm text-slate-600 dark:text-slate-300 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl hover:border-primary-500/50 transition-colors"
+          class="inline-flex items-center gap-2 px-3 py-2 text-sm text-slate-600 dark:text-slate-300 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl hover:border-primary-500/50 transition-colors whitespace-nowrap cursor-pointer"
           @click="isSpotlightOpen = true"
         >
-          <Icon name="material-symbols:search" size="18" />
+          <Icon name="material-symbols:search" size="18" class="shrink-0" />
           <span class="hidden sm:inline">{{
             $t("list.searchIngredients")
           }}</span>
@@ -30,13 +30,25 @@
             <span>⌘</span>K
           </kbd>
         </button>
-        <div
-          class="text-[11px] sm:text-xs px-3 py-1.5 rounded-full border border-secondary-500/40 bg-secondary-500/10 text-secondary-900 dark:text-secondary-200 flex items-center gap-1.5"
+        <!-- Chat CTA button -->
+        <button
+          type="button"
+          class="inline-flex items-center gap-2 px-3 py-2 text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 rounded-xl transition-colors whitespace-nowrap shadow-sm cursor-pointer"
+          @click="isChatOpen = true"
         >
-          <span
-            class="h-1.5 w-1.5 rounded-full bg-secondary-400 animate-pulse"
+          <Icon
+            name="material-symbols:chat-bubble-outline"
+            size="18"
+            class="shrink-0"
           />
-          {{ $t("list.statusChip") }}
+          <span class="hidden sm:inline">{{ $t("list.fabLabel") }}</span>
+        </button>
+        <!-- AI connection status - subtle -->
+        <div
+          class="hidden md:flex text-[10px] px-2 py-1 rounded-full border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 text-slate-500 dark:text-slate-400 items-center gap-1"
+        >
+          <span class="h-1.5 w-1.5 rounded-full bg-green-500" />
+          <span class="hidden lg:inline">AI</span>
         </div>
       </div>
     </header>
@@ -48,7 +60,7 @@
       <button
         type="button"
         :class="[
-          'px-4 py-2 text-sm font-medium rounded-lg transition-colors',
+          'px-4 py-2 text-sm font-medium rounded-lg transition-colors cursor-pointer',
           activeTab === 'pantry'
             ? 'bg-white dark:bg-slate-700 text-slate-900 dark:text-slate-100 shadow-sm'
             : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200',
@@ -63,7 +75,7 @@
       <button
         type="button"
         :class="[
-          'px-4 py-2 text-sm font-medium rounded-lg transition-colors',
+          'px-4 py-2 text-sm font-medium rounded-lg transition-colors cursor-pointer',
           activeTab === 'shopping'
             ? 'bg-white dark:bg-slate-700 text-slate-900 dark:text-slate-100 shadow-sm'
             : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200',
@@ -93,7 +105,7 @@
         </h2>
         <button
           type="button"
-          class="text-[11px] text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300 transition-colors flex items-center gap-1"
+          class="text-[11px] text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300 transition-colors flex items-center gap-1 cursor-pointer"
           @click="isSpotlightOpen = true"
         >
           <Icon name="material-symbols:add" size="14" />
@@ -134,41 +146,151 @@
       </div>
 
       <!-- Pantry items list -->
-      <ul v-else class="space-y-2 max-h-[420px] overflow-y-auto pr-1">
+      <ul v-else class="space-y-2 max-h-105 overflow-y-auto pr-1">
         <li
           v-for="item in pantryStore.items"
           :key="item.id"
-          class="flex items-center gap-3 rounded-xl px-3 py-2 bg-white/90 border border-slate-200 hover:border-primary-500/50 transition-colors dark:bg-slate-900/80 dark:border-slate-700/60"
+          class="rounded-xl px-3 py-2 bg-white/90 border border-slate-200 hover:border-primary-500/50 transition-colors dark:bg-slate-900/80 dark:border-slate-700/60"
         >
+          <div class="flex items-center gap-3">
+            <div
+              class="shrink-0 w-8 h-8 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center"
+            >
+              <Icon
+                name="material-symbols:check"
+                class="text-green-600 dark:text-green-400"
+                size="16"
+              />
+            </div>
+            <div class="flex-1 min-w-0">
+              <p
+                class="text-sm font-medium text-slate-900 dark:text-slate-100 truncate"
+              >
+                {{ item.ingredient?.name || "Unknown" }}
+              </p>
+              <p
+                v-if="item.quantity || item.unit"
+                class="text-xs text-slate-500 dark:text-slate-400"
+              >
+                {{ item.quantity }} {{ item.unit }}
+              </p>
+            </div>
+            <button
+              type="button"
+              class="text-[11px] text-slate-400 hover:text-red-500 dark:hover:text-red-300 transition-colors cursor-pointer"
+              @click="removePantryItem(item.id)"
+            >
+              <Icon name="material-symbols:close" size="18" />
+            </button>
+          </div>
+
+          <!-- Shopping list needs info -->
           <div
-            class="flex-shrink-0 w-8 h-8 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center"
+            v-if="
+              item.ingredient_id &&
+              getShoppingListsNeedingItem(item.ingredient_id).length > 0
+            "
+            class="mt-2 pt-2 border-t border-slate-100 dark:border-slate-800"
           >
-            <Icon
-              name="material-symbols:check"
-              class="text-green-600 dark:text-green-400"
-              size="16"
-            />
-          </div>
-          <div class="flex-1 min-w-0">
-            <p
-              class="text-sm font-medium text-slate-900 dark:text-slate-100 truncate"
+            <div
+              class="text-[11px] text-slate-500 dark:text-slate-400 flex items-center gap-1 flex-wrap"
             >
-              {{ item.ingredient?.name || "Unknown" }}
-            </p>
-            <p
-              v-if="item.quantity || item.unit"
-              class="text-xs text-slate-500 dark:text-slate-400"
+              <Icon name="material-symbols:shopping-cart-outline" size="14" />
+              <span>{{ $t("list.pantry.neededIn") }}:</span>
+              <button
+                v-for="(listInfo, idx) in getShoppingListsNeedingItem(
+                  item.ingredient_id,
+                )"
+                :key="listInfo.listId"
+                type="button"
+                class="text-blue-600 dark:text-blue-400 hover:underline cursor-pointer"
+                @click="
+                  switchToList(listInfo.listId);
+                  activeTab = 'shopping';
+                "
+              >
+                {{ listInfo.listName }}
+                <span v-if="listInfo.quantity" class="opacity-70"
+                  >({{ listInfo.quantity }}{{ listInfo.unit || "" }})</span
+                ><span
+                  v-if="
+                    idx <
+                    getShoppingListsNeedingItem(item.ingredient_id).length - 1
+                  "
+                  >,
+                </span>
+              </button>
+            </div>
+            <!-- Remaining quantity after needs -->
+            <div
+              v-if="item.quantity"
+              class="mt-1 text-[11px] flex items-center gap-1"
+              :class="
+                getRemainingAfterNeeds(
+                  item.ingredient_id,
+                  item.quantity,
+                  item.unit,
+                ).isNegative
+                  ? 'text-amber-600 dark:text-amber-400'
+                  : 'text-green-600 dark:text-green-400'
+              "
             >
-              {{ item.quantity }} {{ item.unit }}
-            </p>
+              <Icon
+                :name="
+                  getRemainingAfterNeeds(
+                    item.ingredient_id,
+                    item.quantity,
+                    item.unit,
+                  ).isNegative
+                    ? 'material-symbols:warning'
+                    : 'material-symbols:check-circle'
+                "
+                size="14"
+              />
+              <template
+                v-if="
+                  getRemainingAfterNeeds(
+                    item.ingredient_id,
+                    item.quantity,
+                    item.unit,
+                  ).isNegative
+                "
+              >
+                {{ $t("list.pantry.shortage") }}:
+                {{
+                  formatSmartQuantity(
+                    getRemainingAfterNeeds(
+                      item.ingredient_id,
+                      item.quantity,
+                      item.unit,
+                    ).remaining,
+                    getRemainingAfterNeeds(
+                      item.ingredient_id,
+                      item.quantity,
+                      item.unit,
+                    ).unit,
+                  )
+                }}
+              </template>
+              <template v-else>
+                {{ $t("list.pantry.remaining") }}:
+                {{
+                  formatSmartQuantity(
+                    getRemainingAfterNeeds(
+                      item.ingredient_id,
+                      item.quantity,
+                      item.unit,
+                    ).remaining,
+                    getRemainingAfterNeeds(
+                      item.ingredient_id,
+                      item.quantity,
+                      item.unit,
+                    ).unit,
+                  )
+                }}
+              </template>
+            </div>
           </div>
-          <button
-            type="button"
-            class="text-[11px] text-slate-400 hover:text-red-500 dark:hover:text-red-300 transition-colors"
-            @click="removePantryItem(item.id)"
-          >
-            <Icon name="material-symbols:close" size="18" />
-          </button>
         </li>
       </ul>
     </section>
@@ -208,7 +330,7 @@
             </select>
             <button
               type="button"
-              class="p-2 text-primary-600 dark:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20 rounded-lg transition-colors"
+              class="p-2 text-primary-600 dark:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20 rounded-lg transition-colors cursor-pointer"
               :title="$t('list.shopping.newList')"
               @click="showNewListModal = true"
             >
@@ -233,7 +355,7 @@
               shoppingListStore.selectedListItems.some((i) => i.is_purchased)
             "
             type="button"
-            class="text-[11px] text-slate-500 hover:text-primary-600 dark:text-slate-400 dark:hover:text-primary-300 transition-colors"
+            class="text-[11px] text-slate-500 hover:text-primary-600 dark:text-slate-400 dark:hover:text-primary-300 transition-colors cursor-pointer"
             @click="clearPurchased"
           >
             {{ $t("list.clearChecked") }}
@@ -293,49 +415,194 @@
         </div>
 
         <!-- Shopping list items -->
-        <ul v-else class="space-y-2 max-h-[420px] overflow-y-auto pr-1">
+        <ul v-else class="space-y-2 max-h-105 overflow-y-auto pr-1">
           <li
             v-for="item in shoppingListStore.selectedListItems"
             :key="item.id"
-            class="flex items-center gap-3 rounded-xl px-3 py-2 bg-white/90 border border-slate-200 hover:border-primary-500/50 transition-colors dark:bg-slate-900/80 dark:border-slate-700/60"
+            class="rounded-xl px-3 py-2 bg-white/90 border border-slate-200 hover:border-primary-500/50 transition-colors dark:bg-slate-900/80 dark:border-slate-700/60"
           >
-            <NXW-Checkbox
-              :model-value="item.is_purchased"
-              class="flex-1"
-              :color="{
-                label: 'text-slate-900 dark:text-slate-100',
-                iconInactive: 'text-slate-500 dark:text-slate-400',
-                iconActive: 'text-primary-600 dark:text-primary-400',
-                hover:
-                  'group-hover:text-primary-600 dark:group-hover:text-primary-300',
-              }"
-              @update:model-value="togglePurchased(item.id, $event)"
-            >
-              <template #label>
-                <span
-                  class="text-xs sm:text-sm"
-                  :class="{
-                    'line-through text-slate-500 dark:text-slate-400':
-                      item.is_purchased,
-                  }"
-                >
-                  {{ item.ingredient?.name || "Unknown" }}
+            <div class="flex items-center gap-3">
+              <NXW-Checkbox
+                :model-value="item.is_purchased"
+                class="flex-1"
+                :color="{
+                  label: 'text-slate-900 dark:text-slate-100',
+                  iconInactive: 'text-slate-500 dark:text-slate-400',
+                  iconActive: 'text-primary-600 dark:text-primary-400',
+                  hover:
+                    'group-hover:text-primary-600 dark:group-hover:text-primary-300',
+                }"
+                @update:model-value="togglePurchased(item.id, $event)"
+              >
+                <template #label>
                   <span
-                    v-if="item.quantity || item.unit"
-                    class="text-slate-400 dark:text-slate-500"
+                    class="text-xs sm:text-sm"
+                    :class="{
+                      'line-through text-slate-500 dark:text-slate-400':
+                        item.is_purchased,
+                    }"
                   >
-                    · {{ item.quantity }} {{ item.unit }}
+                    {{ item.ingredient?.name || "Unknown" }}
+                    <span
+                      v-if="item.quantity || item.unit"
+                      class="text-slate-400 dark:text-slate-500"
+                    >
+                      · {{ formatQuantity(item.quantity, item.unit) }}
+                    </span>
                   </span>
-                </span>
-              </template>
-            </NXW-Checkbox>
-            <button
-              type="button"
-              class="text-[11px] text-slate-400 hover:text-red-500 dark:hover:text-red-300"
-              @click="removeShoppingItem(item.id)"
+                </template>
+              </NXW-Checkbox>
+              <button
+                type="button"
+                class="text-[11px] text-slate-400 hover:text-red-500 dark:hover:text-red-300 cursor-pointer"
+                @click="removeShoppingItem(item.id)"
+              >
+                {{ $t("list.remove") }}
+              </button>
+            </div>
+
+            <!-- Show if item is also in other shopping lists -->
+            <div
+              v-if="
+                item.ingredient_id &&
+                getOtherListsForItem(item.ingredient_id).length > 0
+              "
+              class="mt-2 pt-2 border-t border-slate-100 dark:border-slate-800"
             >
-              {{ $t("list.remove") }}
-            </button>
+              <div
+                class="text-[11px] text-slate-500 dark:text-slate-400 flex items-center gap-1 flex-wrap"
+              >
+                <Icon name="material-symbols:format-list-bulleted" size="14" />
+                <span>{{ $t("list.shopping.alsoInLists") }}:</span>
+                <button
+                  v-for="(listInfo, idx) in getOtherListsForItem(
+                    item.ingredient_id,
+                  )"
+                  :key="listInfo.listId"
+                  type="button"
+                  class="text-blue-600 dark:text-blue-400 hover:underline cursor-pointer"
+                  @click="switchToList(listInfo.listId)"
+                >
+                  {{ listInfo.listName }}
+                  <span v-if="listInfo.quantity" class="opacity-70"
+                    >({{ listInfo.quantity }}{{ listInfo.unit || "" }})</span
+                  ><span
+                    v-if="
+                      idx < getOtherListsForItem(item.ingredient_id).length - 1
+                    "
+                    >,
+                  </span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Add to pantry suggestion when purchased and not in pantry -->
+            <div
+              v-if="item.is_purchased && !getPantryStatus(item)"
+              class="mt-2 pt-2 border-t border-slate-100 dark:border-slate-800"
+            >
+              <div class="flex items-center justify-between">
+                <span
+                  class="text-[11px] text-blue-600 dark:text-blue-400 flex items-center gap-1"
+                >
+                  <Icon name="material-symbols:inventory-2-outline" size="14" />
+                  {{ $t("list.shopping.addToPantrySuggestion") }}
+                </span>
+                <button
+                  type="button"
+                  class="text-[10px] px-2 py-0.5 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors cursor-pointer"
+                  @click="addPurchasedToPantry(item)"
+                >
+                  {{ $t("list.shopping.addToPantry") }}
+                </button>
+              </div>
+            </div>
+
+            <!-- Update pantry suggestion when purchased and already in pantry -->
+            <div
+              v-else-if="item.is_purchased && getPantryStatus(item)"
+              class="mt-2 pt-2 border-t border-slate-100 dark:border-slate-800"
+            >
+              <div class="flex items-center justify-between">
+                <span
+                  class="text-[11px] text-blue-600 dark:text-blue-400 flex items-center gap-1"
+                >
+                  <Icon name="material-symbols:sync" size="14" />
+                  {{ $t("list.shopping.updatePantrySuggestion") }}
+                  ({{
+                    formatSmartQuantity(
+                      getPantryStatus(item)?.pantryQuantity,
+                      getPantryStatus(item)?.pantryUnit,
+                    )
+                  }}
+                  → +{{ formatSmartQuantity(item.quantity, item.unit) }})
+                </span>
+                <button
+                  type="button"
+                  class="text-[10px] px-2 py-0.5 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors cursor-pointer"
+                  @click="addPurchasedToPantry(item)"
+                >
+                  {{ $t("list.shopping.updatePantry") }}
+                </button>
+              </div>
+            </div>
+
+            <!-- Pantry status indicator (when not purchased) -->
+            <div
+              v-else-if="!item.is_purchased && getPantryStatus(item)"
+              class="mt-2 pt-2 border-t border-slate-100 dark:border-slate-800"
+            >
+              <div
+                v-if="getPantryStatus(item)?.type === 'sufficient'"
+                class="flex items-center justify-between"
+              >
+                <span
+                  class="text-[11px] text-green-600 dark:text-green-400 flex items-center gap-1"
+                >
+                  <Icon name="material-symbols:check-circle" size="14" />
+                  {{ $t("list.shopping.inPantry") }}
+                  ({{
+                    formatSmartQuantity(
+                      getPantryStatus(item)?.pantryQuantity,
+                      getPantryStatus(item)?.pantryUnit,
+                    )
+                  }})
+                </span>
+                <button
+                  type="button"
+                  class="text-[10px] px-2 py-0.5 rounded-full bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 hover:bg-green-200 dark:hover:bg-green-900/50 transition-colors cursor-pointer"
+                  @click="togglePurchased(item.id, true)"
+                >
+                  {{ $t("list.shopping.markAsBought") }}
+                </button>
+              </div>
+              <div
+                v-else-if="getPantryStatus(item)?.type === 'insufficient'"
+                class="text-[11px] text-blue-600 dark:text-blue-400"
+              >
+                <div class="flex items-center gap-1">
+                  <Icon name="material-symbols:info" size="14" />
+                  {{ $t("list.shopping.partiallyInPantry") }}
+                </div>
+                <div class="mt-1 text-slate-500 dark:text-slate-400">
+                  {{ $t("list.shopping.inPantryAmount") }}:
+                  {{
+                    formatSmartQuantity(
+                      getPantryStatus(item)?.pantryQuantity,
+                      getPantryStatus(item)?.pantryUnit,
+                    )
+                  }}, {{ $t("list.shopping.needed") }}:
+                  {{ formatSmartQuantity(item.quantity, item.unit) }},
+                  {{ $t("list.shopping.missing") }}:
+                  {{
+                    formatSmartQuantity(
+                      getPantryStatus(item)?.missingQuantity,
+                      getPantryStatus(item)?.missingUnit,
+                    )
+                  }}
+                </div>
+              </div>
+            </div>
           </li>
         </ul>
       </div>
@@ -419,13 +686,21 @@
     </button>
 
     <ListChat v-model="isChatOpen" />
-    <SpotlightSearch v-model="isSpotlightOpen" />
+    <SpotlightSearch v-model="isSpotlightOpen" :mode="activeTab" />
   </div>
 </template>
 
 <script setup lang="ts">
+import type { ShoppingListItemWithIngredient } from "~/types/database";
 import { usePantryItemsStore } from "~/composables/storePantryItems";
 import { useShoppingListStore } from "~/composables/storeShoppingList";
+import {
+  compareQuantities,
+  convertUnit,
+  areUnitsComparable,
+  formatSmartQuantity,
+  roundQuantity,
+} from "~/utils/unitConversion";
 
 const { t } = useI18n();
 
@@ -444,12 +719,29 @@ useHead(() => ({
 const pantryStore = usePantryItemsStore();
 const shoppingListStore = useShoppingListStore();
 
-// UI State
+// UI State - with localStorage persistence
 const activeTab = ref<"pantry" | "shopping">("pantry");
 const isChatOpen = ref(false);
 const isSpotlightOpen = ref(false);
 const showNewListModal = ref(false);
 const newListName = ref("");
+
+// Load persisted tab from localStorage
+onMounted(() => {
+  if (import.meta.client) {
+    const savedTab = localStorage.getItem("munchcoach:activeTab");
+    if (savedTab === "pantry" || savedTab === "shopping") {
+      activeTab.value = savedTab;
+    }
+  }
+});
+
+// Persist tab selection to localStorage
+watch(activeTab, (newTab) => {
+  if (import.meta.client) {
+    localStorage.setItem("munchcoach:activeTab", newTab);
+  }
+});
 
 // Check for openChat query param to auto-open chat after login redirect
 const route = useRoute();
@@ -462,6 +754,140 @@ onMounted(() => {
   }
 });
 
+// Format quantity with unit
+const formatQuantity = (
+  quantity: number | null | undefined,
+  unit: string | null | undefined,
+): string => {
+  if (!quantity && !unit) return "";
+  if (!quantity) return unit || "";
+  if (!unit) return String(quantity);
+  return `${quantity}${unit}`;
+};
+
+// Get pantry status for a shopping list item
+interface PantryStatus {
+  type: "sufficient" | "insufficient";
+  pantryQuantity: number | null;
+  pantryUnit: string | null;
+  missingQuantity: number | null;
+  missingUnit: string | null;
+  convertedPantryQuantity: number | null;
+}
+
+// Get other shopping lists containing an ingredient (excluding current)
+const getOtherListsForItem = (ingredientId: string) => {
+  return shoppingListStore.getOtherListsContainingIngredient(ingredientId);
+};
+
+// Switch to a different shopping list
+const switchToList = (listId: string) => {
+  shoppingListStore.selectList(listId);
+};
+
+// Get shopping lists that need a pantry item (for pantry view)
+interface ShoppingListNeed {
+  listId: string;
+  listName: string;
+  quantity: number | null;
+  unit: string | null;
+}
+
+const getShoppingListsNeedingItem = (
+  ingredientId: string,
+): ShoppingListNeed[] => {
+  return shoppingListStore.getListsContainingIngredient(ingredientId);
+};
+
+// Calculate remaining quantity after fulfilling shopping list needs
+const getRemainingAfterNeeds = (
+  ingredientId: string,
+  pantryQuantity: number | null,
+  pantryUnit: string | null,
+): { remaining: number | null; unit: string | null; isNegative: boolean } => {
+  const needs = getShoppingListsNeedingItem(ingredientId);
+
+  // If no pantry quantity or no needs, return the pantry quantity as-is
+  if (pantryQuantity === null || pantryQuantity === undefined) {
+    return { remaining: null, unit: pantryUnit, isNegative: false };
+  }
+
+  if (needs.length === 0) {
+    return { remaining: pantryQuantity, unit: pantryUnit, isNegative: false };
+  }
+
+  let totalNeeded = 0;
+  let hasIncompatibleUnits = false;
+
+  for (const need of needs) {
+    if (need.quantity && need.quantity > 0) {
+      // Check if units are compatible
+      if (
+        need.unit &&
+        pantryUnit &&
+        areUnitsComparable(need.unit, pantryUnit)
+      ) {
+        // Convert the need quantity to pantry unit
+        const converted = convertUnit(need.quantity, need.unit, pantryUnit);
+        if (converted !== null) {
+          totalNeeded += converted;
+        } else {
+          hasIncompatibleUnits = true;
+        }
+      } else if (
+        need.unit === pantryUnit ||
+        (!need.unit && !pantryUnit) ||
+        !need.unit ||
+        !pantryUnit
+      ) {
+        // Same unit or one/both are null - add directly
+        totalNeeded += need.quantity;
+      } else {
+        // Units exist but are incompatible
+        hasIncompatibleUnits = true;
+      }
+    }
+  }
+
+  // If we had incompatible units and couldn't convert anything, return null
+  if (hasIncompatibleUnits && totalNeeded === 0) {
+    return { remaining: null, unit: pantryUnit, isNegative: false };
+  }
+
+  const remaining = pantryQuantity - totalNeeded;
+  return {
+    remaining: roundQuantity(Math.abs(remaining)),
+    unit: pantryUnit,
+    isNegative: remaining < 0,
+  };
+};
+
+const getPantryStatus = (
+  item: ShoppingListItemWithIngredient,
+): PantryStatus | null => {
+  if (!item.ingredient_id) return null;
+
+  const pantryItem = pantryStore.getByIngredientId(item.ingredient_id);
+  if (!pantryItem) return null;
+
+  // Use unit conversion for comparison
+  const comparison = compareQuantities(
+    pantryItem.quantity,
+    pantryItem.unit,
+    item.quantity,
+    item.unit,
+  );
+
+  return {
+    type: comparison.sufficient ? "sufficient" : "insufficient",
+    pantryQuantity: pantryItem.quantity,
+    pantryUnit: pantryItem.unit,
+    missingQuantity: comparison.missingQuantity,
+    missingUnit: comparison.missingUnit,
+    convertedPantryQuantity: comparison.convertedHaveQuantity,
+  };
+};
+
 // Actions
 const removePantryItem = async (itemId: string) => {
   await pantryStore.removeItem(itemId);
@@ -473,6 +899,17 @@ const removeShoppingItem = async (itemId: string) => {
 
 const togglePurchased = async (itemId: string, isPurchased: boolean) => {
   await shoppingListStore.toggleItemPurchased(itemId, isPurchased);
+};
+
+// Add purchased item to pantry
+const addPurchasedToPantry = async (item: ShoppingListItemWithIngredient) => {
+  if (!item.ingredient_id) return;
+
+  await pantryStore.addOrUpdateItem({
+    ingredient_id: item.ingredient_id,
+    quantity: item.quantity,
+    unit: item.unit,
+  });
 };
 
 const clearPurchased = async () => {
@@ -509,12 +946,11 @@ const createNewList = async () => {
 
 .modal-enter-active,
 .modal-leave-active {
-  transition: all 0.2s ease;
+  transition: opacity 0.2s ease;
 }
 
 .modal-enter-from,
 .modal-leave-to {
   opacity: 0;
-  transform: translateX(-50%) translateY(-10px) scale(0.98);
 }
 </style>

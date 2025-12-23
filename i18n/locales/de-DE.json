@@ -123,7 +123,10 @@
       "title": "Dein Vorrat",
       "addItem": "Zutat hinzufügen",
       "emptyState": "Dein Vorrat ist leer. Füge Zutaten hinzu, die du zu Hause hast.",
-      "addFirst": "Füge deine erste Zutat hinzu"
+      "addFirst": "Füge deine erste Zutat hinzu",
+      "neededIn": "Benötigt in",
+      "remaining": "Übrig nach Listen",
+      "shortage": "Es fehlt"
     },
     "shopping": {
       "selectList": "Einkaufsliste:",
@@ -137,7 +140,19 @@
       "listNameLabel": "Listenname",
       "listNamePlaceholder": "z. B. Wocheneinkauf",
       "cancel": "Abbrechen",
-      "create": "Erstellen"
+      "create": "Erstellen",
+      "inPantry": "Bereits im Vorrat",
+      "markAsBought": "Als gekauft markieren",
+      "insufficientQuantity": "Unzureichende Menge im Vorrat",
+      "partiallyInPantry": "Teilweise im Vorrat vorhanden",
+      "inPantryAmount": "Im Vorrat",
+      "needed": "benötigt",
+      "missing": "fehlt",
+      "addToPantrySuggestion": "Zum Vorrat hinzufügen?",
+      "addToPantry": "Zum Vorrat hinzufügen",
+      "updatePantrySuggestion": "Vorratsmenge aktualisieren?",
+      "updatePantry": "Vorrat aktualisieren",
+      "alsoInLists": "Auch in"
     },    "addSectionTitle": "Was hast du zur Verfügung?",
     "addPlaceholder": "z. B. Pasta, Cherrytomaten, Knoblauch",
     "addButton": "Zur Liste hinzufügen",
@@ -180,6 +195,24 @@
     "inList": "In Liste",
     "addingTo": "Hinzufügen zu:",
     "navigate": "navigieren",
-    "select": "auswählen"
+    "select": "auswählen",
+    "quantity": "Menge",
+    "unit": "Einheit",
+    "add": "Hinzufügen",
+    "update": "Aktualisieren",
+    "existingQuantity": "Bereits vorhanden mit",
+    "willBeAdded": "neue Menge wird addiert",
+    "willOverwrite": "Einheiten nicht kompatibel, wird ersetzt",
+    "errorInvalidQuantity": "Bitte gib eine gültige Menge größer als 0 ein",
+    "errorNoUnit": "Bitte wähle eine Einheit"
+  },
+  "units": {
+    "pcs": "Stk",
+    "g": "g",
+    "kg": "kg",
+    "ml": "ml",
+    "l": "l",
+    "tbsp": "EL",
+    "tsp": "TL"
   }
 }

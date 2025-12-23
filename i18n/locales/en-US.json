@@ -124,7 +124,10 @@
       "title": "Your Pantry",
       "addItem": "Add ingredient",
       "emptyState": "Your pantry is empty. Add ingredients you have at home.",
-      "addFirst": "Add your first ingredient"
+      "addFirst": "Add your first ingredient",
+      "neededIn": "Needed in",
+      "remaining": "Remaining after lists",
+      "shortage": "Short by"
     },
     "shopping": {
       "selectList": "Shopping list:",
@@ -138,7 +141,19 @@
       "listNameLabel": "List name",
       "listNamePlaceholder": "e.g. Weekly groceries",
       "cancel": "Cancel",
-      "create": "Create"
+      "create": "Create",
+      "inPantry": "Already in pantry",
+      "markAsBought": "Mark as bought",
+      "insufficientQuantity": "Insufficient quantity in pantry",
+      "partiallyInPantry": "Partially available in pantry",
+      "inPantryAmount": "In pantry",
+      "needed": "needed",
+      "missing": "missing",
+      "addToPantrySuggestion": "Add to your pantry?",
+      "addToPantry": "Add to pantry",
+      "updatePantrySuggestion": "Update pantry quantity?",
+      "updatePantry": "Update pantry",
+      "alsoInLists": "Also in"
     },
     "addSectionTitle": "What do you have available?",
     "addPlaceholder": "e.g. Pasta, cherry tomatoes, garlic",
@@ -182,6 +197,24 @@
     "inList": "In list",
     "addingTo": "Adding to:",
     "navigate": "navigate",
-    "select": "select"
+    "select": "select",
+    "quantity": "Quantity",
+    "unit": "Unit",
+    "add": "Add",
+    "update": "Update",
+    "existingQuantity": "Already exists with",
+    "willBeAdded": "new quantity will be added",
+    "willOverwrite": "units not compatible, will replace",
+    "errorInvalidQuantity": "Please enter a valid quantity greater than 0",
+    "errorNoUnit": "Please select a unit"
+  },
+  "units": {
+    "pcs": "pcs",
+    "g": "g",
+    "kg": "kg",
+    "ml": "ml",
+    "l": "l",
+    "tbsp": "tbsp",
+    "tsp": "tsp"
   }
 }

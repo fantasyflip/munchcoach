@@ -1,4 +1,7 @@
 import { defineStore } from "pinia";
+import { usePantryItemsStore } from "./storePantryItems";
+import { useShoppingListStore } from "./storeShoppingList";
+import { useIngredientStore } from "./storeIngredient";
 
 // JWT Claims type returned by useSupabaseUser in v2
 interface UserClaims {
@@ -55,6 +58,22 @@ export const useUserStore = defineStore("user", () => {
   });
 
   const logout = async () => {
+    // Reset all stores
+    const pantryStore = usePantryItemsStore();
+    const shoppingListStore = useShoppingListStore();
+    const ingredientStore = useIngredientStore();
+
+    pantryStore.$reset();
+    shoppingListStore.$reset();
+    ingredientStore.$reset();
+
+    // Clear user-specific localStorage
+    if (import.meta.client) {
+      localStorage.removeItem("munchcoach:selectedListId");
+      localStorage.removeItem("munchcoach:activeTab");
+    }
+
+    // Sign out from Supabase
     await supabase.auth.signOut();
   };
 
