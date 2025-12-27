@@ -104,3 +104,7 @@ Implement the following changes:
 
 #18
 There is an issue with the calculation of remaining quantities in the pantry when an item is needed in multiple shopping lists. Please fix this by correctly summing up the total needed quantity across all shopping lists and subtracting it from the pantry quantity to get the remaining quantity. Make sure to handle unit conversions properly as well as negative remaining quantities.
+
+#19
+Add a feature to freeze shopping lists by setting the status to "frozen", so that no items can be added or removed from the list. This is useful when a user has a shopping list for a specific meal which always includes the same items. Items can still be marked as bought, but no new items can be added or removed. Lists can be unfrozen again when needed.
+

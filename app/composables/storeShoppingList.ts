@@ -103,6 +103,17 @@ export const useShoppingListStore = defineStore("shoppingList", () => {
     return selectedList.value?.shopping_list_items ?? [];
   });
 
+  // Check if a list is frozen (uses 'archived' status in DB)
+  const isListFrozen = (listId: string): boolean => {
+    const list = lists.value.find((l) => l.id === listId);
+    return list?.status === "archived";
+  };
+
+  // Check if the selected list is frozen
+  const isSelectedListFrozen = computed(() => {
+    return selectedList.value?.status === "archived";
+  });
+
   // Select a list
   const selectList = (listId: string) => {
     selectedListId.value = listId;
@@ -167,6 +178,36 @@ export const useShoppingListStore = defineStore("shoppingList", () => {
     return true;
   }
 
+  // Freeze a shopping list (sets status to 'archived' in DB)
+  async function freezeList(listId: string): Promise<boolean> {
+    const { error } = await supabase
+      .from("shopping_lists")
+      .update({ status: "archived" })
+      .eq("id", listId);
+
+    if (error) {
+      console.error("Error freezing list:", error.message);
+      return false;
+    }
+    await refresh();
+    return true;
+  }
+
+  // Unfreeze a shopping list
+  async function unfreezeList(listId: string): Promise<boolean> {
+    const { error } = await supabase
+      .from("shopping_lists")
+      .update({ status: "open" })
+      .eq("id", listId);
+
+    if (error) {
+      console.error("Error unfreezing list:", error.message);
+      return false;
+    }
+    await refresh();
+    return true;
+  }
+
   async function addItemToList(
     listId: string,
     item: {
@@ -175,6 +216,12 @@ export const useShoppingListStore = defineStore("shoppingList", () => {
       unit?: string | null;
     },
   ): Promise<boolean> {
+    // Block adding items to frozen lists
+    if (isListFrozen(listId)) {
+      console.warn("Cannot add items to a frozen list");
+      return false;
+    }
+
     const { error } = await supabase.from("shopping_list_items").insert([
       {
         shopping_list_id: listId,
@@ -229,7 +276,16 @@ export const useShoppingListStore = defineStore("shoppingList", () => {
       quantity?: number | null;
       unit?: string | null;
     },
-  ): Promise<{ success: boolean; action: "added" | "updated" | "error" }> {
+  ): Promise<{
+    success: boolean;
+    action: "added" | "updated" | "error" | "frozen";
+  }> {
+    // Block adding/updating items in frozen lists
+    if (isListFrozen(listId)) {
+      console.warn("Cannot add or update items in a frozen list");
+      return { success: false, action: "frozen" };
+    }
+
     // Check if ingredient already exists in this list
     const list = lists.value.find((l) => l.id === listId);
     const existing = list?.shopping_list_items?.find(
@@ -321,6 +377,15 @@ export const useShoppingListStore = defineStore("shoppingList", () => {
   }
 
   async function removeItemFromList(itemId: string): Promise<boolean> {
+    // Find the list containing this item to check frozen status
+    const containingList = lists.value.find((list) =>
+      list.shopping_list_items?.some((i) => i.id === itemId),
+    );
+    if (containingList?.status === "archived") {
+      console.warn("Cannot remove items from a frozen list");
+      return false;
+    }
+
     const { error } = await supabase
       .from("shopping_list_items")
       .delete()
@@ -394,9 +459,13 @@ export const useShoppingListStore = defineStore("shoppingList", () => {
     selectedListId,
     selectedList,
     selectedListItems,
+    isListFrozen,
+    isSelectedListFrozen,
     selectList,
     createNewList,
     deleteList,
+    freezeList,
+    unfreezeList,
     addItemToList,
     addOrUpdateItemInList,
     updateItemInList,

@@ -153,7 +153,12 @@
       "addToPantry": "Add to pantry",
       "updatePantrySuggestion": "Update pantry quantity?",
       "updatePantry": "Update pantry",
-      "alsoInLists": "Also in"
+      "alsoInLists": "Also in",
+      "freeze": "Freeze list",
+      "unfreeze": "Unfreeze list",
+      "frozenBadge": "Frozen",
+      "frozenHint": "This list is frozen. Items can be marked as bought, but cannot be added or removed.",
+      "listFrozenError": "Cannot modify a frozen list"
     },
     "addSectionTitle": "What do you have available?",
     "addPlaceholder": "e.g. Pasta, cherry tomatoes, garlic",

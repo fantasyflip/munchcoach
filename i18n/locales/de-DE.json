@@ -114,7 +114,8 @@
   "list": {
     "title": "Einkaufsliste",
     "subtitle": "Behalte im Blick, was du schon hast und was du noch brauchst – mit KI-gestützten Rezeptvorschlägen obendrauf.",
-    "statusChip": "Verbunden mit deinem KI-Rezeptassistenten",    "searchIngredients": "Zutaten suchen",
+    "statusChip": "Verbunden mit deinem KI-Rezeptassistenten",
+    "searchIngredients": "Zutaten suchen",
     "tabs": {
       "pantry": "Vorrat",
       "shopping": "Einkaufsliste"
@@ -152,8 +153,14 @@
       "addToPantry": "Zum Vorrat hinzufügen",
       "updatePantrySuggestion": "Vorratsmenge aktualisieren?",
       "updatePantry": "Vorrat aktualisieren",
-      "alsoInLists": "Auch in"
-    },    "addSectionTitle": "Was hast du zur Verfügung?",
+      "alsoInLists": "Auch in",
+      "freeze": "Liste einfrieren",
+      "unfreeze": "Liste auftauen",
+      "frozenBadge": "Eingefroren",
+      "frozenHint": "Diese Liste ist eingefroren. Artikel können als gekauft markiert werden, aber nicht hinzugefügt oder entfernt werden.",
+      "listFrozenError": "Eine eingefrorene Liste kann nicht bearbeitet werden"
+    },
+    "addSectionTitle": "Was hast du zur Verfügung?",
     "addPlaceholder": "z. B. Pasta, Cherrytomaten, Knoblauch",
     "addButton": "Zur Liste hinzufügen",
     "listSectionTitle": "Dein Vorrat & deine Liste",

@@ -509,7 +509,7 @@ const addSelectedIngredient = async () => {
     return;
   }
 
-  let result: { success: boolean; action: "added" | "updated" | "error" };
+  let result: { success: boolean; action: "added" | "updated" | "error" | "frozen" };
 
   if (props.mode === "pantry") {
     // Add or update pantry item
@@ -532,6 +532,12 @@ const addSelectedIngredient = async () => {
         unit: inputUnit.value || null,
       },
     );
+  }
+
+  if (result.action === "frozen") {
+    // Show error for frozen list
+    validationError.value = t("list.shopping.listFrozenError");
+    return;
   }
 
   if (result.success) {

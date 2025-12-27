@@ -345,21 +345,72 @@
         class="rounded-2xl border border-slate-200 bg-white/90 text-slate-900 dark:border-slate-700/70 dark:bg-slate-900/70 dark:text-slate-100 backdrop-blur-md p-4 sm:p-5"
       >
         <div class="flex items-center justify-between mb-4">
-          <h2 class="text-sm font-medium">
-            {{
-              shoppingListStore.selectedList?.name || $t("list.shopping.noList")
-            }}
-          </h2>
-          <button
-            v-if="
-              shoppingListStore.selectedListItems.some((i) => i.is_purchased)
-            "
-            type="button"
-            class="text-[11px] text-slate-500 hover:text-primary-600 dark:text-slate-400 dark:hover:text-primary-300 transition-colors cursor-pointer"
-            @click="clearPurchased"
-          >
-            {{ $t("list.clearChecked") }}
-          </button>
+          <div class="flex items-center gap-2">
+            <h2 class="text-sm font-medium">
+              {{
+                shoppingListStore.selectedList?.name ||
+                $t("list.shopping.noList")
+              }}
+            </h2>
+            <!-- Frozen badge -->
+            <span
+              v-if="shoppingListStore.isSelectedListFrozen"
+              class="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-medium text-blue-600 dark:text-blue-400 bg-blue-100 dark:bg-blue-900/30 rounded-full"
+            >
+              <Icon name="material-symbols:ac-unit" size="12" />
+              {{ $t("list.shopping.frozenBadge") }}
+            </span>
+          </div>
+          <div class="flex items-center gap-2">
+            <!-- Freeze/Unfreeze button -->
+            <button
+              v-if="shoppingListStore.selectedList"
+              type="button"
+              class="text-[11px] flex items-center gap-1 px-2 py-1 rounded-lg transition-colors cursor-pointer"
+              :class="
+                shoppingListStore.isSelectedListFrozen
+                  ? 'text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20'
+                  : 'text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
+              "
+              :title="
+                shoppingListStore.isSelectedListFrozen
+                  ? $t('list.shopping.unfreeze')
+                  : $t('list.shopping.freeze')
+              "
+              @click="toggleFreeze"
+            >
+              <Icon name="material-symbols:ac-unit" size="14" />
+              <span class="hidden sm:inline">
+                {{
+                  shoppingListStore.isSelectedListFrozen
+                    ? $t("list.shopping.unfreeze")
+                    : $t("list.shopping.freeze")
+                }}
+              </span>
+            </button>
+            <!-- Clear checked button -->
+            <button
+              v-if="
+                shoppingListStore.selectedListItems.some(
+                  (i) => i.is_purchased,
+                ) && !shoppingListStore.isSelectedListFrozen
+              "
+              type="button"
+              class="text-[11px] text-slate-500 hover:text-primary-600 dark:text-slate-400 dark:hover:text-primary-300 transition-colors cursor-pointer"
+              @click="clearPurchased"
+            >
+              {{ $t("list.clearChecked") }}
+            </button>
+          </div>
+        </div>
+
+        <!-- Frozen hint banner -->
+        <div
+          v-if="shoppingListStore.isSelectedListFrozen"
+          class="mb-4 px-3 py-2 text-xs text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl flex items-center gap-2"
+        >
+          <Icon name="material-symbols:info" size="16" />
+          {{ $t("list.shopping.frozenHint") }}
         </div>
 
         <!-- Loading state -->
@@ -453,6 +504,7 @@
                 </template>
               </NXW-Checkbox>
               <button
+                v-if="!shoppingListStore.isSelectedListFrozen"
                 type="button"
                 class="text-[11px] text-slate-400 hover:text-red-500 dark:hover:text-red-300 cursor-pointer"
                 @click="removeShoppingItem(item.id)"
@@ -929,6 +981,18 @@ const createNewList = async () => {
   await shoppingListStore.createNewList(newListName.value.trim());
   newListName.value = "";
   showNewListModal.value = false;
+};
+
+// Toggle freeze/unfreeze for the selected list
+const toggleFreeze = async () => {
+  const selectedList = shoppingListStore.selectedList;
+  if (!selectedList) return;
+
+  if (shoppingListStore.isSelectedListFrozen) {
+    await shoppingListStore.unfreezeList(selectedList.id);
+  } else {
+    await shoppingListStore.freezeList(selectedList.id);
+  }
 };
 </script>
 
