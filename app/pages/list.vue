@@ -767,6 +767,10 @@ useHead(() => ({
   ],
 }));
 
+definePageMeta({
+  middleware: "protected",
+});
+
 // Stores
 const pantryStore = usePantryItemsStore();
 const shoppingListStore = useShoppingListStore();
