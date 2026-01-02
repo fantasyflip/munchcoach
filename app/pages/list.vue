@@ -493,7 +493,19 @@
                         item.is_purchased,
                     }"
                   >
-                    {{ item.ingredient?.name || "Unknown" }}
+                    <!-- Show product name if product selected, else ingredient name -->
+                    <template v-if="item.product">
+                      {{ item.product.name || "Unknown Product" }}
+                      <span
+                        v-if="item.product.brand"
+                        class="text-slate-500 dark:text-slate-400"
+                      >
+                        ({{ item.product.brand }})
+                      </span>
+                    </template>
+                    <template v-else>
+                      {{ item.ingredient?.name || "Unknown" }}
+                    </template>
                     <span
                       v-if="item.quantity || item.unit"
                       class="text-slate-400 dark:text-slate-500"

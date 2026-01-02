@@ -213,6 +213,14 @@
     "errorInvalidQuantity": "Please enter a valid quantity greater than 0",
     "errorNoUnit": "Please select a unit"
   },
+  "productSelect": {
+    "title": "Choose a product",
+    "searchPlaceholder": "Search products...",
+    "genericOption": "Add as generic ingredient",
+    "noProducts": "No specific products found for this ingredient",
+    "loading": "Loading products...",
+    "hint": "Choose a specific product or add as generic ingredient"
+  },
   "units": {
     "pcs": "pcs",
     "g": "g",

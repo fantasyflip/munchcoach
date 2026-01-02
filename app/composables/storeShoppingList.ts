@@ -48,7 +48,9 @@ export const useShoppingListStore = defineStore("shoppingList", () => {
 
     const { data, error } = await supabase
       .from("shopping_lists")
-      .select("*, shopping_list_items(*, ingredient:ingredients(*))")
+      .select(
+        "*, shopping_list_items(*, ingredient:ingredients(*), product:products(*))",
+      )
       .eq("user_id", user.value.sub)
       .order("created_at", { ascending: false });
 
@@ -212,6 +214,7 @@ export const useShoppingListStore = defineStore("shoppingList", () => {
     listId: string,
     item: {
       ingredient_id: string;
+      product_id?: string | null;
       quantity?: number | null;
       unit?: string | null;
     },
@@ -226,6 +229,7 @@ export const useShoppingListStore = defineStore("shoppingList", () => {
       {
         shopping_list_id: listId,
         ingredient_id: item.ingredient_id,
+        product_id: item.product_id ?? null,
         quantity: item.quantity ?? null,
         unit: item.unit ?? null,
         is_purchased: false,
@@ -273,6 +277,7 @@ export const useShoppingListStore = defineStore("shoppingList", () => {
     listId: string,
     item: {
       ingredient_id: string;
+      product_id?: string | null;
       quantity?: number | null;
       unit?: string | null;
     },

@@ -213,6 +213,14 @@
     "errorInvalidQuantity": "Bitte gib eine gültige Menge größer als 0 ein",
     "errorNoUnit": "Bitte wähle eine Einheit"
   },
+  "productSelect": {
+    "title": "Produkt auswählen",
+    "searchPlaceholder": "Produkte suchen...",
+    "genericOption": "Als generische Zutat hinzufügen",
+    "noProducts": "Keine spezifischen Produkte für diese Zutat gefunden",
+    "loading": "Produkte werden geladen...",
+    "hint": "Wähle ein spezifisches Produkt oder füge als generische Zutat hinzu"
+  },
   "units": {
     "pcs": "Stk",
     "g": "g",

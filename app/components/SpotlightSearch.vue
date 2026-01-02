@@ -312,11 +312,19 @@
         </div>
       </div>
     </Transition>
+
+    <!-- Product Selection Modal -->
+    <ProductSelectModal
+      v-model="isProductModalOpen"
+      :ingredient-id="selectedIngredient?.id ?? ''"
+      :ingredient-name="selectedIngredient?.name ?? ''"
+      @select="handleProductSelect"
+    />
   </Teleport>
 </template>
 
 <script setup lang="ts">
-import type { IngredientWithCategory } from "~/types/database";
+import type { IngredientWithCategory, Product } from "~/types/database";
 import { useIngredientStore } from "~/composables/storeIngredient";
 import { usePantryItemsStore } from "~/composables/storePantryItems";
 import { useShoppingListStore } from "~/composables/storeShoppingList";
@@ -353,6 +361,10 @@ const selectedIngredient = ref<IngredientWithCategory | null>(null);
 const inputQuantity = ref<number>(1);
 const inputUnit = ref<string>("pcs");
 
+// Product selection modal state (only for shopping mode)
+const isProductModalOpen = ref(false);
+const pendingProductId = ref<string | null>(null);
+
 // Available units
 const availableUnits = [
   { value: "pcs", label: t("units.pcs") },
@@ -386,6 +398,8 @@ watch(
       inputQuantity.value = 1;
       inputUnit.value = "pcs";
       validationError.value = null;
+      isProductModalOpen.value = false;
+      pendingProductId.value = null;
       ingredientStore.clearSearch();
     }
   },
@@ -509,7 +523,30 @@ const addSelectedIngredient = async () => {
     return;
   }
 
-  let result: { success: boolean; action: "added" | "updated" | "error" | "frozen" };
+  // For shopping mode, open product selection modal first
+  if (props.mode === "shopping") {
+    isProductModalOpen.value = true;
+    return;
+  }
+
+  // For pantry mode, add directly (no product selection)
+  await doAddItem(null);
+};
+
+// Handle product selection from modal
+const handleProductSelect = async (product: Product | null) => {
+  pendingProductId.value = product?.id ?? null;
+  await doAddItem(product?.id ?? null);
+};
+
+// Actually add the item with optional product_id
+const doAddItem = async (productId: string | null) => {
+  if (!selectedIngredient.value) return;
+
+  let result: {
+    success: boolean;
+    action: "added" | "updated" | "error" | "frozen";
+  };
 
   if (props.mode === "pantry") {
     // Add or update pantry item
@@ -528,6 +565,7 @@ const addSelectedIngredient = async () => {
       shoppingListStore.selectedListId,
       {
         ingredient_id: selectedIngredient.value.id,
+        product_id: productId,
         quantity: inputQuantity.value || null,
         unit: inputUnit.value || null,
       },
@@ -546,6 +584,7 @@ const addSelectedIngredient = async () => {
     inputQuantity.value = 1;
     inputUnit.value = "pcs";
     validationError.value = null;
+    pendingProductId.value = null;
     // Focus back on search input for quick next search
     nextTick(() => {
       searchInputRef.value?.focus();

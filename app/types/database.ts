@@ -9,7 +9,6 @@ export interface Category {
 export interface Ingredient {
   id: string;
   name: string;
-  normalized_name: string;
   category_id: string | null;
   created_at: string;
 }
@@ -61,6 +60,7 @@ export interface ShoppingListItem {
   id: string;
   shopping_list_id: string;
   ingredient_id: string;
+  product_id: string | null;
   quantity: number | null;
   unit: string | null;
   is_purchased: boolean;
@@ -70,6 +70,7 @@ export interface ShoppingListItem {
 
 export interface ShoppingListItemWithIngredient extends ShoppingListItem {
   ingredient?: Ingredient;
+  product?: Product;
 }
 
 export interface ShoppingListWithItems extends ShoppingList {

@@ -51,11 +51,11 @@ export const useIngredientStore = defineStore("ingredients", () => {
     searchStatus.value = "pending";
     searchQuery.value = query;
 
-    // Search by normalized_name using ilike for case-insensitive matching
+    // Search by name using ilike for case-insensitive matching
     const { data, error } = await supabase
       .from("ingredients")
       .select("*, category:categories(*)")
-      .ilike("normalized_name", `%${query.toLowerCase()}%`)
+      .ilike("name", `%${query}%`)
       .limit(limit);
 
     if (error) {
