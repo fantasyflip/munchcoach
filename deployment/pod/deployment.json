@@ -2,20 +2,20 @@
   "apiVersion": "apps/v1",
   "kind": "Deployment",
   "metadata": {
-    "name": "munchcoach-app",
+    "name": "munchcoach-app-v2",
     "namespace": "munchcoach"
   },
   "spec": {
     "replicas": 1,
     "selector": {
       "matchLabels": {
-        "app": "munchcoach-app"
+        "app": "munchcoach-app-v2"
       }
     },
     "template": {
       "metadata": {
         "labels": {
-          "app": "munchcoach-app"
+          "app": "munchcoach-app-v2"
         }
       },
       "spec": {
@@ -26,8 +26,8 @@
         ],
         "containers": [
           {
-            "name": "munchcoach-app",
-            "image": "ghcr.io/munchcoach/webapp:main-c825dbda4d5bd1e626553b8e14769c4965922965",
+            "name": "munchcoach-app-v2",
+            "image": "ghcr.io/user/repo:branch-hash",
             "env": [],
             "ports": [
               {

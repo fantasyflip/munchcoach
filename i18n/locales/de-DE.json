@@ -26,6 +26,8 @@
     "nav": {
       "groceryList": "Einkaufsliste",
       "login": "Anmelden",
+      "logout": "Abmelden",
+      "logoutTitle": "Angemeldet als {name}. Klicken zum Abmelden.",
       "features": "Funktionen",
       "howItWorks": "So funktioniert's"
     },
@@ -99,12 +101,65 @@
     "subtitle": "Melde dich an, um deinen Vorrat und deine Einkaufsliste auf allen Geräten zu synchronisieren.",
     "sectionTitle": "Mit Discord fortfahren",
     "sectionSubtitle": "Nutze deinen Discord-Account, um sicher auf MunchCoach zuzugreifen.",
-    "button": "Mit Discord anmelden"
+    "button": "Mit Discord anmelden",
+    "benefits": {
+      "title": "Warum anmelden?",
+      "items": {
+        "sync": "Speichere deine Einkaufsliste und greife von jedem Gerät darauf zu.",
+        "recipes": "Erhalte personalisierte Rezeptvorschläge basierend auf deinen verfügbaren Zutaten.",
+        "chat": "Chatte mit MunchCoach für KI-gestützte Kochunterstützung."
+      }
+    }
   },
   "list": {
     "title": "Einkaufsliste",
     "subtitle": "Behalte im Blick, was du schon hast und was du noch brauchst – mit KI-gestützten Rezeptvorschlägen obendrauf.",
     "statusChip": "Verbunden mit deinem KI-Rezeptassistenten",
+    "searchIngredients": "Zutaten suchen",
+    "tabs": {
+      "pantry": "Vorrat",
+      "shopping": "Einkaufsliste"
+    },
+    "pantry": {
+      "title": "Dein Vorrat",
+      "addItem": "Zutat hinzufügen",
+      "emptyState": "Dein Vorrat ist leer. Füge Zutaten hinzu, die du zu Hause hast.",
+      "addFirst": "Füge deine erste Zutat hinzu",
+      "neededIn": "Benötigt in",
+      "remaining": "Übrig nach Listen",
+      "shortage": "Es fehlt"
+    },
+    "shopping": {
+      "selectList": "Einkaufsliste:",
+      "newList": "Neue Liste erstellen",
+      "noList": "Keine Liste ausgewählt",
+      "noListSelected": "Keine Einkaufsliste ausgewählt. Erstelle eine, um loszulegen.",
+      "createFirst": "Erstelle deine erste Liste",
+      "emptyList": "Diese Liste ist leer. Füge Zutaten hinzu, um loszulegen.",
+      "addFirst": "Füge deinen ersten Artikel hinzu",
+      "newListTitle": "Neue Einkaufsliste erstellen",
+      "listNameLabel": "Listenname",
+      "listNamePlaceholder": "z. B. Wocheneinkauf",
+      "cancel": "Abbrechen",
+      "create": "Erstellen",
+      "inPantry": "Bereits im Vorrat",
+      "markAsBought": "Als gekauft markieren",
+      "insufficientQuantity": "Unzureichende Menge im Vorrat",
+      "partiallyInPantry": "Teilweise im Vorrat vorhanden",
+      "inPantryAmount": "Im Vorrat",
+      "needed": "benötigt",
+      "missing": "fehlt",
+      "addToPantrySuggestion": "Zum Vorrat hinzufügen?",
+      "addToPantry": "Zum Vorrat hinzufügen",
+      "updatePantrySuggestion": "Vorratsmenge aktualisieren?",
+      "updatePantry": "Vorrat aktualisieren",
+      "alsoInLists": "Auch in",
+      "freeze": "Liste einfrieren",
+      "unfreeze": "Liste auftauen",
+      "frozenBadge": "Eingefroren",
+      "frozenHint": "Diese Liste ist eingefroren. Artikel können als gekauft markiert werden, aber nicht hinzugefügt oder entfernt werden.",
+      "listFrozenError": "Eine eingefrorene Liste kann nicht bearbeitet werden"
+    },
     "addSectionTitle": "Was hast du zur Verfügung?",
     "addPlaceholder": "z. B. Pasta, Cherrytomaten, Knoblauch",
     "addButton": "Zur Liste hinzufügen",
@@ -121,14 +176,58 @@
     "chat": {
       "title": "Rezeptassistent",
       "subtitle": "Frag nach Rezepten auf Basis der Zutaten, die du bereits zu Hause hast.",
-      "userExample": "Ich habe Pasta, Tomaten und Knoblauch.",
-      "aiExampleIntro": "Hier ist eine schnelle Knoblauch-Tomaten-Pasta, die du kochen kannst:",
-      "aiExampleStep1": "Koche die Pasta al dente.",
-      "aiExampleStep2": "Brate den Knoblauch in Olivenöl an, gib Tomaten hinzu und lasse alles köcheln.",
-      "aiExampleStep3": "Mische die Pasta mit der Soße und schmecke sie ab.",
-      "chipAddMissing": "Fehlende Zutaten zur Liste hinzufügen",
-      "chipMoreIdeas": "Mehr Rezeptideen anzeigen",
-      "inputHint": "Gib eine Nachricht ein, um MunchCoach nach Rezeptideen zu fragen."
+      "welcomeMessage": "Hallo! Ich bin MunchCoach, dein smarter Einkaufslisten-Assistent. Du kannst mir sagen, welche Zutaten du hast, und ich schlage dir passende Rezepte vor. Wenn dir Zutaten für ein Rezept fehlen, kann ich dir helfen, sie auf deine Einkaufsliste zu setzen. Schreib einfach deine Zutaten, um loszulegen!",
+      "inputPlaceholder": "Schreibe deine Nachricht...",
+      "sendButton": "Nachricht senden",
+      "you": "Du",
+      "ai": "KI",
+      "error": "Entschuldigung, etwas ist schiefgelaufen. Bitte versuche es erneut.",
+      "sending": "Wird gesendet...",
+      "loginRequired": {
+        "title": "Anmeldung erforderlich",
+        "description": "Melde dich an, um mit MunchCoach zu chatten und personalisierte Rezeptvorschläge zu erhalten.",
+        "button": "Anmelden und loschatten"
+      }
     }
+  },
+  "callback": {
+    "title": "Anmeldung läuft...",
+    "description": "MunchCoach nach seinem Lieblings-Rezept fragen..."
+  },
+  "spotlight": {
+    "placeholder": "Nach Zutaten suchen...",
+    "hint": "Tippe los, um nach Zutaten zu suchen",
+    "noResults": "Keine Zutaten gefunden. Versuche eine andere Suche.",
+    "inPantry": "Im Vorrat",
+    "inList": "In Liste",
+    "addingTo": "Hinzufügen zu:",
+    "navigate": "navigieren",
+    "select": "auswählen",
+    "quantity": "Menge",
+    "unit": "Einheit",
+    "add": "Hinzufügen",
+    "update": "Aktualisieren",
+    "existingQuantity": "Bereits vorhanden mit",
+    "willBeAdded": "neue Menge wird addiert",
+    "willOverwrite": "Einheiten nicht kompatibel, wird ersetzt",
+    "errorInvalidQuantity": "Bitte gib eine gültige Menge größer als 0 ein",
+    "errorNoUnit": "Bitte wähle eine Einheit"
+  },
+  "productSelect": {
+    "title": "Produkt auswählen",
+    "searchPlaceholder": "Produkte suchen...",
+    "genericOption": "Als generische Zutat hinzufügen",
+    "noProducts": "Keine spezifischen Produkte für diese Zutat gefunden",
+    "loading": "Produkte werden geladen...",
+    "hint": "Wähle ein spezifisches Produkt oder füge als generische Zutat hinzu"
+  },
+  "units": {
+    "pcs": "Stk",
+    "g": "g",
+    "kg": "kg",
+    "ml": "ml",
+    "l": "l",
+    "tbsp": "EL",
+    "tsp": "TL"
   }
 }

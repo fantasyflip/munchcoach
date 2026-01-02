@@ -26,6 +26,8 @@
     "nav": {
       "groceryList": "Grocery List",
       "login": "Login",
+      "logout": "Logout",
+      "logoutTitle": "Logged in as {name}. Click to log out.",
       "features": "Features",
       "howItWorks": "How it works"
     },
@@ -99,12 +101,65 @@
     "subtitle": "Sign in to sync your pantry and grocery list across devices.",
     "sectionTitle": "Continue with Discord",
     "sectionSubtitle": "Use your Discord account to securely access MunchCoach.",
-    "button": "Login with Discord"
+    "button": "Login with Discord",
+    "benefits": {
+      "title": "Why sign in?",
+      "items": {
+        "sync": "Save your grocery list and access it from any device.",
+        "recipes": "Get personalized recipe suggestions based on your available ingredients.",
+        "chat": "Chat with MunchCoach for AI-powered cooking assistance."
+      }
+    }
   },
   "list": {
     "title": "Grocery list",
     "subtitle": "Keep track of what you already have and what you still need – with AI-powered recipe suggestions on top.",
     "statusChip": "Connected to your AI recipe assistant",
+    "searchIngredients": "Search ingredients",
+    "tabs": {
+      "pantry": "Pantry",
+      "shopping": "Shopping List"
+    },
+    "pantry": {
+      "title": "Your Pantry",
+      "addItem": "Add ingredient",
+      "emptyState": "Your pantry is empty. Add ingredients you have at home.",
+      "addFirst": "Add your first ingredient",
+      "neededIn": "Needed in",
+      "remaining": "Remaining after lists",
+      "shortage": "Short by"
+    },
+    "shopping": {
+      "selectList": "Shopping list:",
+      "newList": "Create new list",
+      "noList": "No list selected",
+      "noListSelected": "No shopping list selected. Create one to get started.",
+      "createFirst": "Create your first list",
+      "emptyList": "This list is empty. Add ingredients to get started.",
+      "addFirst": "Add your first item",
+      "newListTitle": "Create new shopping list",
+      "listNameLabel": "List name",
+      "listNamePlaceholder": "e.g. Weekly groceries",
+      "cancel": "Cancel",
+      "create": "Create",
+      "inPantry": "Already in pantry",
+      "markAsBought": "Mark as bought",
+      "insufficientQuantity": "Insufficient quantity in pantry",
+      "partiallyInPantry": "Partially available in pantry",
+      "inPantryAmount": "In pantry",
+      "needed": "needed",
+      "missing": "missing",
+      "addToPantrySuggestion": "Add to your pantry?",
+      "addToPantry": "Add to pantry",
+      "updatePantrySuggestion": "Update pantry quantity?",
+      "updatePantry": "Update pantry",
+      "alsoInLists": "Also in",
+      "freeze": "Freeze list",
+      "unfreeze": "Unfreeze list",
+      "frozenBadge": "Frozen",
+      "frozenHint": "This list is frozen. Items can be marked as bought, but cannot be added or removed.",
+      "listFrozenError": "Cannot modify a frozen list"
+    },
     "addSectionTitle": "What do you have available?",
     "addPlaceholder": "e.g. Pasta, cherry tomatoes, garlic",
     "addButton": "Add to list",
@@ -121,14 +176,58 @@
     "chat": {
       "title": "Recipe assistant",
       "subtitle": "Ask for recipes based on what you already have at home.",
-      "userExample": "I have pasta, tomatoes and garlic.",
-      "aiExampleIntro": "Here's a quick garlic tomato pasta you could make:",
-      "aiExampleStep1": "Cook pasta until al dente.",
-      "aiExampleStep2": "Sauté garlic in olive oil, add tomatoes and simmer.",
-      "aiExampleStep3": "Toss pasta with the sauce and season to taste.",
-      "chipAddMissing": "Add missing ingredients to list",
-      "chipMoreIdeas": "Show more recipe ideas",
-      "inputHint": "Type a message to ask MunchCoach for recipe ideas."
+      "welcomeMessage": "Hello! I'm MunchCoach, your smart grocery list assistant. You can tell me what ingredients you have, and I'll suggest recipes for you. If you're missing any ingredients for a recipe, I can help you add them to your grocery list. Just type in your ingredients to get started!",
+      "inputPlaceholder": "Type your message...",
+      "sendButton": "Send message",
+      "you": "You",
+      "ai": "AI",
+      "error": "Sorry, something went wrong. Please try again.",
+      "sending": "Sending...",
+      "loginRequired": {
+        "title": "Login required",
+        "description": "Sign in to chat with MunchCoach and get personalized recipe suggestions.",
+        "button": "Login to start chatting"
+      }
     }
+  },
+  "callback": {
+    "title": "Logging in...",
+    "description": "Ask MunchCoach for his favorite recipe..."
+  },
+  "spotlight": {
+    "placeholder": "Search for ingredients...",
+    "hint": "Start typing to search for ingredients",
+    "noResults": "No ingredients found. Try a different search.",
+    "inPantry": "In pantry",
+    "inList": "In list",
+    "addingTo": "Adding to:",
+    "navigate": "navigate",
+    "select": "select",
+    "quantity": "Quantity",
+    "unit": "Unit",
+    "add": "Add",
+    "update": "Update",
+    "existingQuantity": "Already exists with",
+    "willBeAdded": "new quantity will be added",
+    "willOverwrite": "units not compatible, will replace",
+    "errorInvalidQuantity": "Please enter a valid quantity greater than 0",
+    "errorNoUnit": "Please select a unit"
+  },
+  "productSelect": {
+    "title": "Choose a product",
+    "searchPlaceholder": "Search products...",
+    "genericOption": "Add as generic ingredient",
+    "noProducts": "No specific products found for this ingredient",
+    "loading": "Loading products...",
+    "hint": "Choose a specific product or add as generic ingredient"
+  },
+  "units": {
+    "pcs": "pcs",
+    "g": "g",
+    "kg": "kg",
+    "ml": "ml",
+    "l": "l",
+    "tbsp": "tbsp",
+    "tsp": "tsp"
   }
 }

@@ -17,4 +17,4 @@ jobs:
           gh-token: ${{ secrets.GH_TOKEN }}
           gh-email: "katzenberger.ph+github@gmail.com"
           namespace: "munchcoach"
-          app-name: "munchcoach-app"
+          app-name: "munchcoach-app-v2"
