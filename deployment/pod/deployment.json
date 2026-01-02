@@ -27,7 +27,7 @@
         "containers": [
           {
             "name": "munchcoach-app-v2",
-            "image": "ghcr.io/user/repo:branch-hash",
+            "image": "ghcr.io/fantasyflip/munchcoach:main-fa40d3302a12012f7ac1fe848dc3bfd7b95e700f",
             "env": [],
             "ports": [
               {
