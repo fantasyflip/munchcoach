@@ -64,9 +64,32 @@ export const useIngredientStore = defineStore("ingredients", () => {
       return [];
     }
 
-    searchResults.value = data as IngredientWithCategory[];
+    // Sort results for better relevance:
+    // 1. Exact matches first
+    // 2. Prefix matches (starts with query)
+    // 3. Other matches (contains query)
+    const queryLower = query.toLowerCase();
+    const sortedData = (data as IngredientWithCategory[]).sort((a, b) => {
+      const aName = a.name.toLowerCase();
+      const bName = b.name.toLowerCase();
+
+      const aExact = aName === queryLower;
+      const bExact = bName === queryLower;
+      if (aExact && !bExact) return -1;
+      if (!aExact && bExact) return 1;
+
+      const aPrefix = aName.startsWith(queryLower);
+      const bPrefix = bName.startsWith(queryLower);
+      if (aPrefix && !bPrefix) return -1;
+      if (!aPrefix && bPrefix) return 1;
+
+      // If both are the same type, sort alphabetically
+      return aName.localeCompare(bName);
+    });
+
+    searchResults.value = sortedData;
     searchStatus.value = "success";
-    return data as IngredientWithCategory[];
+    return sortedData;
   };
 
   // Debounced search for real-time input

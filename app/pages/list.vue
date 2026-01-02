@@ -105,7 +105,7 @@
         </h2>
         <button
           type="button"
-          class="text-[11px] text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300 transition-colors flex items-center gap-1 cursor-pointer"
+          class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-white bg-primary-600 hover:bg-primary-700 rounded-lg transition-colors cursor-pointer shadow-sm"
           @click="isSpotlightOpen = true"
         >
           <Icon name="material-symbols:add" size="14" />
@@ -138,9 +138,10 @@
         <p>{{ $t("list.pantry.emptyState") }}</p>
         <button
           type="button"
-          class="mt-3 text-primary-600 dark:text-primary-400 hover:underline"
+          class="mt-3 inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 rounded-lg transition-colors cursor-pointer shadow-sm"
           @click="isSpotlightOpen = true"
         >
+          <Icon name="material-symbols:add" size="16" />
           {{ $t("list.pantry.addFirst") }}
         </button>
       </div>
@@ -330,11 +331,14 @@
             </select>
             <button
               type="button"
-              class="p-2 text-primary-600 dark:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20 rounded-lg transition-colors cursor-pointer"
+              class="inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-primary-600 dark:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20 border border-primary-200 dark:border-primary-800 rounded-xl transition-colors cursor-pointer"
               :title="$t('list.shopping.newList')"
               @click="showNewListModal = true"
             >
-              <Icon name="material-symbols:add" size="20" />
+              <Icon name="material-symbols:add" size="18" />
+              <span class="hidden sm:inline">
+                {{ $t("list.shopping.newList") }}
+              </span>
             </button>
           </div>
         </div>
@@ -438,9 +442,10 @@
           <p>{{ $t("list.shopping.noListSelected") }}</p>
           <button
             type="button"
-            class="mt-3 text-primary-600 dark:text-primary-400 hover:underline"
+            class="mt-3 inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 rounded-lg transition-colors cursor-pointer shadow-sm"
             @click="showNewListModal = true"
           >
+            <Icon name="material-symbols:add" size="16" />
             {{ $t("list.shopping.createFirst") }}
           </button>
         </div>
@@ -458,9 +463,10 @@
           <p>{{ $t("list.shopping.emptyList") }}</p>
           <button
             type="button"
-            class="mt-3 text-primary-600 dark:text-primary-400 hover:underline"
+            class="mt-3 inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 rounded-lg transition-colors cursor-pointer shadow-sm"
             @click="isSpotlightOpen = true"
           >
+            <Icon name="material-symbols:add" size="16" />
             {{ $t("list.shopping.addFirst") }}
           </button>
         </div>
