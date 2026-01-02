@@ -167,7 +167,7 @@
               <p
                 class="text-sm font-medium text-slate-900 dark:text-slate-100 truncate"
               >
-                {{ item.ingredient?.name || "Unknown" }}
+                {{ getLocalizedName(item.ingredient) }}
               </p>
               <p
                 v-if="item.quantity || item.unit"
@@ -501,7 +501,7 @@
                   >
                     <!-- Show product name if product selected, else ingredient name -->
                     <template v-if="item.product">
-                      {{ item.product.name || "Unknown Product" }}
+                      {{ getLocalizedName(item.product) }}
                       <span
                         v-if="item.product.brand"
                         class="text-slate-500 dark:text-slate-400"
@@ -510,7 +510,7 @@
                       </span>
                     </template>
                     <template v-else>
-                      {{ item.ingredient?.name || "Unknown" }}
+                      {{ getLocalizedName(item.ingredient) }}
                     </template>
                     <span
                       v-if="item.quantity || item.unit"
@@ -708,7 +708,7 @@
                 outlined
                 class="mb-4"
                 :color="{
-                  bg: 'dark:bg-slate-800 bg-white',
+                  bg: 'dark:bg-slate-900 bg-white',
                 }"
               />
               <div class="flex justify-end gap-3">
@@ -773,6 +773,7 @@ import {
 } from "~/utils/unitConversion";
 
 const { t } = useI18n();
+const { getLocalizedName } = useLocalizedName();
 
 useHead(() => ({
   title: t("seo.pages.list.title"),

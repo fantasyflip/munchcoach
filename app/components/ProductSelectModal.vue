@@ -124,7 +124,7 @@
                     <p
                       class="text-sm font-medium text-slate-900 dark:text-slate-100 truncate"
                     >
-                      {{ product.name || "Unknown Product" }}
+                      {{ getLocalizedName(product) }}
                     </p>
                     <p
                       v-if="product.brand"
@@ -188,6 +188,7 @@ const emit = defineEmits<{
 }>();
 
 const productStore = useProductStore();
+const { getLocalizedName } = useLocalizedName();
 
 const searchInputRef = ref<HTMLInputElement | null>(null);
 const searchQuery = ref("");

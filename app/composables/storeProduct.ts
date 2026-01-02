@@ -44,7 +44,7 @@ export const useProductStore = defineStore("products", () => {
         const products: ProductWithIngredientLink[] = (data || [])
             .filter((item) => item.product)
             .map((item) => ({
-                ...(item.product as Product),
+                ...(item.product as unknown as Product),
                 is_primary: item.is_primary,
                 confidence: item.confidence,
             }));

@@ -9,6 +9,7 @@ export interface Category {
 export interface Ingredient {
   id: string;
   name: string;
+  name_de: string | null;
   category_id: string | null;
   created_at: string;
 }
@@ -82,6 +83,7 @@ export interface Product {
   barcode: string;
   off_product_id: string | null;
   name: string | null;
+  name_de: string | null;
   brand: string | null;
   quantity_text: string | null;
   off_raw: Record<string, unknown> | null;

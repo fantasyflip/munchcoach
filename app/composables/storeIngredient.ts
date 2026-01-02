@@ -51,35 +51,70 @@ export const useIngredientStore = defineStore("ingredients", () => {
     searchStatus.value = "pending";
     searchQuery.value = query;
 
-    // Search by name using ilike for case-insensitive matching
-    const { data, error } = await supabase
-      .from("ingredients")
-      .select("*, category:categories(*)")
-      .ilike("name", `%${query}%`)
-      .limit(limit);
+    // Make two separate queries - one for name and one for name_de
+    // This avoids issues with the Supabase `or` filter syntax
+    const [nameResult, nameDeResult] = await Promise.all([
+      supabase
+        .from("ingredients")
+        .select("*, category:categories(*)")
+        .ilike("name", `%${query}%`)
+        .limit(limit),
+      supabase
+        .from("ingredients")
+        .select("*, category:categories(*)")
+        .ilike("name_de", `%${query}%`)
+        .limit(limit),
+    ]);
 
-    if (error) {
+    if (nameResult.error) {
       searchStatus.value = "error";
-      console.error("Error searching ingredients:", error.message);
+      console.error("Error searching ingredients by name:", nameResult.error.message);
       return [];
     }
 
+    if (nameDeResult.error) {
+      searchStatus.value = "error";
+      console.error("Error searching ingredients by name_de:", nameDeResult.error.message);
+      return [];
+    }
+
+    // Merge results and remove duplicates using a Map
+    const resultsMap = new Map<string, IngredientWithCategory>();
+
+    // Add name results first
+    for (const item of (nameResult.data || []) as IngredientWithCategory[]) {
+      resultsMap.set(item.id, item);
+    }
+
+    // Add name_de results (won't overwrite existing items with same ID)
+    for (const item of (nameDeResult.data || []) as IngredientWithCategory[]) {
+      if (!resultsMap.has(item.id)) {
+        resultsMap.set(item.id, item);
+      }
+    }
+
+    const mergedData = Array.from(resultsMap.values());
+
     // Sort results for better relevance:
-    // 1. Exact matches first
-    // 2. Prefix matches (starts with query)
+    // 1. Exact matches first (in either name or name_de)
+    // 2. Prefix matches (starts with query in either name or name_de)
     // 3. Other matches (contains query)
     const queryLower = query.toLowerCase();
-    const sortedData = (data as IngredientWithCategory[]).sort((a, b) => {
+    const sortedData = mergedData.sort((a, b) => {
       const aName = a.name.toLowerCase();
       const bName = b.name.toLowerCase();
+      const aNameDe = a.name_de?.toLowerCase() || "";
+      const bNameDe = b.name_de?.toLowerCase() || "";
 
-      const aExact = aName === queryLower;
-      const bExact = bName === queryLower;
+      const aExact = aName === queryLower || aNameDe === queryLower;
+      const bExact = bName === queryLower || bNameDe === queryLower;
       if (aExact && !bExact) return -1;
       if (!aExact && bExact) return 1;
 
-      const aPrefix = aName.startsWith(queryLower);
-      const bPrefix = bName.startsWith(queryLower);
+      const aPrefix =
+        aName.startsWith(queryLower) || aNameDe.startsWith(queryLower);
+      const bPrefix =
+        bName.startsWith(queryLower) || bNameDe.startsWith(queryLower);
       if (aPrefix && !bPrefix) return -1;
       if (!aPrefix && bPrefix) return 1;
 
@@ -87,9 +122,12 @@ export const useIngredientStore = defineStore("ingredients", () => {
       return aName.localeCompare(bName);
     });
 
-    searchResults.value = sortedData;
+    // Limit to requested number
+    const limitedData = sortedData.slice(0, limit);
+
+    searchResults.value = limitedData;
     searchStatus.value = "success";
-    return sortedData;
+    return limitedData;
   };
 
   // Debounced search for real-time input

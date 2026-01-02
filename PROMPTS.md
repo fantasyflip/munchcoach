@@ -119,3 +119,8 @@ There are a few adjusments that need to be addressed:
 1. The + button for creating a new list should include a localized text that states "Create new list".
 2. The search needs to be improved. Best fitting results should be displayed first. For example searching for "sonnenblumenöl" should display "sonnenblumenöl" as the first result. Currently is appears to be random.
 3. It needs to be visually more clear for the user where he needs to click to add a new item to the shopping list or pantry.
+
+#22
+The database has been extended. The tables ingredients and products now have an extra column called "name_de". Therefore the following tasks need to be addressed:
+1. Update the supabase types to include the new column.
+2. If the localization is set to german use the "name_de" column instead of the "name" column, if "name_de" holds a value. Otherwise fallback to the "name" column.

@@ -131,7 +131,7 @@
                       <p
                         class="text-sm font-medium text-slate-900 dark:text-slate-100 truncate"
                       >
-                        {{ ingredient.name }}
+                        {{ getLocalizedName(ingredient) }}
                       </p>
                       <p
                         v-if="ingredient.category"
@@ -317,7 +317,7 @@
     <ProductSelectModal
       v-model="isProductModalOpen"
       :ingredient-id="selectedIngredient?.id ?? ''"
-      :ingredient-name="selectedIngredient?.name ?? ''"
+      :ingredient-name="getLocalizedName(selectedIngredient)"
       @select="handleProductSelect"
     />
   </Teleport>
@@ -347,6 +347,7 @@ const pantryStore = usePantryItemsStore();
 const shoppingListStore = useShoppingListStore();
 
 const { t } = useI18n();
+const { getLocalizedName } = useLocalizedName();
 
 // Validation error message
 const validationError = ref<string | null>(null);
